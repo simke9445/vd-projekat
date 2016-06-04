@@ -1,10 +1,43 @@
 include ../mixins/mixin.jade
 
-html
-	head
-		title
-		link(rel="stylesheet" type="text/css" href="../assets/css/test.css")
-	body
-		+list
-		+list
-		block content
+doctype
+html( lang="en" )
+    head
+        title Rista Turista
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Projekat iz VD' )
+        link( href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/cerulean/bootstrap.min.css", rel="stylesheet" )
+        link( rel="stylesheet" type="text/css" href="../assets/css/main.css" )
+    body
+        .container
+            div
+                img( src="../assets/img/pano.jpg" style="width: 100%;" )
+            +nav("Rista Turista", "navbar")
+                +nav_item( "index.html" ) Pocetna
+                +nav_item( "about.html" ) O nama
+                +nav_item( "summer_2016.html" ) Leto 2016
+                +nav_item( "eu_cities.html" ) Evropski gradovi
+                +nav_item( "far_dest.html" ) Daleke destinacije
+                +nav_item( "new_year_2016.html" ) Nova godina 2016
+
+            block content
+            
+            footer
+                .row
+                    .col-lg-12
+                        p Copyright &copy; Krcko Orascic 2020            
+
+        script( src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+
+        script.
+            $(function(){
+                // highligts current page in navbar
+                $('#navbar').find('a').each(function(){
+                    if ($(this).prop('href') == window.location.href) {
+                        $(this).addClass('active'); $(this).parents('li').addClass('active');
+                    }
+                });
+            });
