@@ -5,11 +5,11 @@
 
 We're using gulp for this so start with
 ```javascript
-	npm install -g gulp
+npm install -g gulp
 ```
 followed by:
 ```javascript
-	npm install
+npm install
 ``` 
 to install other dependancies.
 
