@@ -11,9 +11,13 @@ followed by:
 ```javascript
 	npm install
 ``` 
-to install other dependancies
+to install other dependancies.
 
-Now just run gulp in your local folder, and everything will be set up.
+Now just run:
+```javascript
+gulp
+```
+ in your local folder, and everything will be set up.
 Changing & saving files in src folder automatically triggers jade compilation.
 ```
 Small tip, adding or deleting files does not trigger instantenous update on the html files, 
