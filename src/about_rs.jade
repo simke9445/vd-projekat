@@ -1,0 +1,25 @@
+extends layouts/layout_rs
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index.html") Pocetna
+        +breadcrumb() O nama
+
+
+    .row
+        .col-lg-12
+            h1.page-header Ko smo mi?
+
+    p Lorem ipsum i ta cuda.
+
+
+    .row
+        .col-lg-12
+            h1.page-header Kontakt
+
+    .row
+        .col-lg-12
+            form
+                input.form-control(placeholder="naslov")
+                textarea.form-control( rows="5" )
+                +button("primary", "#") Posalji

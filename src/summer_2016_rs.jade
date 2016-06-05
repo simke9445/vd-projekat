@@ -1,0 +1,23 @@
+extends layouts/layout_rs
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_rs.html") Pocetna
+        +breadcrumb() Leto 2016
+
+    +thumb_row("Grcka")
+        +thumb("#", "Tasos", "https://www.prestigetravel.rs/media/k2/items/cache/b1d237aad44a95e3871fc116e6241517_M.jpg")
+        +thumb("#", "Sarti", "http://epictravel.rs/wp-content/uploads/Sarti-400x300.jpg")
+        +thumb("#", "Neos Marmaras", "http://www.villa-paradiso.gr/wp-content/uploads/marmaras11-400x300.jpg")
+        +thumb("#", "Polihrono", "http://media.casatravel.rs/2015/12/polihrono-1024x576.jpg")
+
+    +thumb_row("Crna Gora")
+        +thumb("#", "Herceg Novi", "http://letovanje.crna.gora.me/pictures/listings/20_53.jpg")
+        +thumb("#", "Budva", "http://dukleyart.me/wp-content/uploads/2015/03/location3.jpg")
+        +thumb("#", "Bar", "http://d22kp0apja09ol.cloudfront.net/photos/A00166/img_16516_4.jpg")
+        +thumb("#", "Ulcinj", "http://www.booking.me/userFiles/upload/images/Ulcinj1.jpeg")
+
+    +thumb_row("Italija")
+        +thumb("#", "Lido di Jesolo", "http://www.hotellagunajesolo.com/images/foto/LidoDiJesoloSpiaggia.jpg")
+        +thumb("#", "Rimini", "http://www.villa-paradiso.gr/wp-content/uploads/marmaras11-400x300.jpg")
+        +thumb("#", "Sicilija", "https://imagesus-ssl.homeaway.com/mda01/5a631f1b-9452-40a4-90c0-355075fadaba.1.6")

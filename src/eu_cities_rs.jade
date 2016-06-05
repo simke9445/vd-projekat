@@ -1,0 +1,23 @@
+extends layouts/layout_rs
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_rs.html") Pocetna
+        +breadcrumb() Evropski gradovi
+
+    +thumb_row("Nemacka")
+        +thumb("#", "Frankfurt", "http://www.goethe.de/ins/de/pro/ort/fra/fot/sta/2_Roemer.jpg")
+        +thumb("#", "Keln", "http://www.visitcologne.co.uk/assets/images/cologne-koeln-city.JPG")
+        +thumb("#", "Minhen", "https://photos.smugmug.com/Travel/Munich-Prague-Vienna/i-gJCRXx6/3/S/20140228100741-P2280226-Edit-S.jpg")
+        +thumb("#", "Berlin", "https://www.rentalcargroup.com/images/content-images/Germany/Berlin.jpg")
+
+    +thumb_row("Engleska")
+        +thumb("#", "London", "https://www.homeaway.co.uk/info/files/live/sites/hr/files/shared/new%20hips/special%20occasions/collections/london1.jpg")
+        +thumb("#", "Mancester", "http://www.casinosofbritain.com/mcrrestaurants/photos/british/tempus-photo.jpg")
+        +thumb("#", "Kembridz", "http://tuftsalumni.org/images/uploads/event_images/CambridgeCam.jpg")
+        +thumb("#", "Liverpul", "http://2.bp.blogspot.com/_FcPC4Zo8Wc4/SN69vpTjq-I/AAAAAAAAAhM/IqfXEEK2iSo/s400/DSC04566.JPG")
+
+    +thumb_row("Italija")
+        +thumb("#", "Lido di Jesolo", "http://www.hotellagunajesolo.com/images/foto/LidoDiJesoloSpiaggia.jpg")
+        +thumb("#", "Rimini", "http://www.villa-paradiso.gr/wp-content/uploads/marmaras11-400x300.jpg")
+        +thumb("#", "Sicilija", "https://imagesus-ssl.homeaway.com/mda01/5a631f1b-9452-40a4-90c0-355075fadaba.1.6")

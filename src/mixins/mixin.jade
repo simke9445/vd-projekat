@@ -74,3 +74,19 @@ mixin button(style, href, size)
         block
 
 //- End button mixin
+
+//- Thumbnail with title mixin
+
+mixin thumb_row(title)
+    .row
+        .col-lg-12
+            h1.page-header= title
+
+    .row
+        block
+
+mixin thumb(href, title, src)
+    .col-lg-3.col-md-4.col-xs-6.thumb
+        a.thumbnail( href=href )
+            img.img-responsive( src=src alt="" )
+        h4.text-center= title
