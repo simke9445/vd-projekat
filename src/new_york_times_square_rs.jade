@@ -1,0 +1,142 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("far_dest_rs.html") Daleke destinacije
+		+breadcrumb("new_york_rs.html") Njujork
+		+breadcrumb() AKA Times Square
+
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
+	#my-content
+
+	+details(
+		3, 
+		["../assets/img/new_york_times_square_2.jpg", "../assets/img/new_york_times_square_3.jpg"],
+		 "../assets/img/new_york_times_square_1.jpg",
+		 "Smešten u Njujorku, ovaj objekat je udaljen 1 blok od Tajms Skvera. U ponudi su smeštajne jedinice sa kompletno opremljenom kuhinjom i odvojenim dnevnim boravkom u kojem se nalazi flat-screen TV.",
+		 "Prema nezavisnim recenzijama, naši gosti obožavaju ovaj deo destinacije Njujork. Ova oblast je odlična za šoping, sa popularnim brendovima u blizini: Apple, Tiffany & Co, H&M, Prada, Nike",
+		 "Smeštajne jedinice u objektu AKA Times Square imaju velike sobe sa brodskim podom i modernim nameštajem. Gostima su na raspolaganju mašine za pranje i sušenje veša. Kupatila su opremljena velikom staklenom tuš kabinom i toaletnim priborom."
+		 )
+
+block scripts
+	script.
+		var opened = false;
+
+		(function(){
+			$("#reservation_form").validate({
+				rules:{
+					'date-start': {
+						required: true,
+						date: true
+					},
+					'date-end': {
+						required: true,
+						date: true
+					},
+					'email': {
+						required: true,
+						email: true
+					},
+					'person-num': {
+						required: true
+					},
+					'card-num': {
+						required: true,
+						creditcard: true
+					}
+
+				},
+				messages: {
+					'date-start': "Please enter a valid starting date",
+					'date-end': "Please enter a valid end date",
+					'email': "Please enter a valid email address",
+					'person-num': "Please enter a valid person number",
+					'card-num': "Please enter a valid card number"
+				},
+				submitHandler: function() {
+					if ($('#reservation_form').valid()){
+						var date = new Date();
+						var minutes = 7*24*60;
+						date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+						Cookies.set("new_york_times_square" + date + date.getMilliseconds(), {
+							name: 'new_york_times_square',
+							date_start: $('#date-start').val(),
+							date_end : $('#date-end').val(),
+							email : $('#email').val(),
+							person_num : $('#person-num').val(),
+							select_card : $('#select-card').val(),
+							card_num : $('#card-num').val()
+						}, { expires: date });
+
+						if (opened){
+							$('#my-content').empty();
+							opened = false;
+						}
+					}	
+
+					return;
+				}
+			});
+			
+		})();
+
+		$('#showReservations').on('click', function(){
+			var jsonData = Cookies.getJSON();
+			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
+
+			$.each(jsonData, function(key, value) {
+
+				if(value.name == "new_york_times_square"){
+					var dom = $('<div>').append($('<div>').attr('class', 'row')
+								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum polaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_start))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum dolaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_end))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Email')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.email))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj ljudi')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.person_num))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Kartica')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.select_card))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj Kartice')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.card_num)))))).html();
+					html += dom + "\n";
+				}
+
+			});
+
+
+			$("#my-content").html(html);
+			opened = true;
+		});

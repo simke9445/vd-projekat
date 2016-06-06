@@ -1,0 +1,143 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("eu_cities_rs.html") Evropski gradovi
+		+breadcrumb("munich_rs.html") Minhen
+		+breadcrumb() Vier Jahreszeiten Kempinski München
+
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
+	#my-content
+
+	+details(
+		3, 
+		["../assets/img/munich_kempinski_2.jpg", "../assets/img/munich_kempinski_3.jpg"],
+		 "../assets/img/munich_kempinski_1.jpg",
+		 "Ovaj hotel sa 5 zvezdica poseduje elegantan spa centar sa bazenom i nudi panoramski pogled na grad. Smešten je u centru Minhena, na 5 minuta hoda od Trga Marijenplac. ",
+		 "U svakoj sobi obezbeđen je iPad koji se može koristiti za rezervisanje hotelskih sadržaja ili za pretragu informacija o hotelu. Svaki iPad se takođe može koristiti za naručivanje posluge u sobi i za podešavanje svetla i klima-uređaja. Gosti mogu poneti iPad u spa centar i u lobi.",
+		 "Hotel Vier Jahreszeiten Kempinski München raspolaže elegantnim i moderno uređenim sobama. Sve klimatizovane sobe sadrže TV, mini-bar i svetlo kupatilo sa bade-mantilima."
+		 )
+
+
+block scripts
+	script.
+		var opened = false;
+
+		(function(){
+			$("#reservation_form").validate({
+				rules:{
+					'date-start': {
+						required: true,
+						date: true
+					},
+					'date-end': {
+						required: true,
+						date: true
+					},
+					'email': {
+						required: true,
+						email: true
+					},
+					'person-num': {
+						required: true
+					},
+					'card-num': {
+						required: true,
+						creditcard: true
+					}
+
+				},
+				messages: {
+					'date-start': "Please enter a valid starting date",
+					'date-end': "Please enter a valid end date",
+					'email': "Please enter a valid email address",
+					'person-num': "Please enter a valid person number",
+					'card-num': "Please enter a valid card number"
+				},
+				submitHandler: function() {
+					if ($('#reservation_form').valid()){
+						var date = new Date();
+						var minutes = 7*24*60;
+						date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+						Cookies.set("munich_kempinski" + date + date.getMilliseconds(), {
+							name: 'munich_kempinski',
+							date_start: $('#date-start').val(),
+							date_end : $('#date-end').val(),
+							email : $('#email').val(),
+							person_num : $('#person-num').val(),
+							select_card : $('#select-card').val(),
+							card_num : $('#card-num').val()
+						}, { expires: date });
+
+						if (opened){
+							$('#my-content').empty();
+							opened = false;
+						}
+					}	
+
+					return;
+				}
+			});
+			
+		})();
+
+		$('#showReservations').on('click', function(){
+			var jsonData = Cookies.getJSON();
+			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
+
+			$.each(jsonData, function(key, value) {
+
+				if(value.name == "munich_kempinski"){
+					var dom = $('<div>').append($('<div>').attr('class', 'row')
+								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum polaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_start))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum dolaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_end))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Email')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.email))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj ljudi')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.person_num))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Kartica')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.select_card))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj Kartice')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.card_num)))))).html();
+					html += dom + "\n";
+				}
+
+			});
+
+
+			$("#my-content").html(html);
+			opened = true;
+		});

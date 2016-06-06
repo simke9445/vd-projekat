@@ -1,15 +1,18 @@
-extends layouts/layout_rs
+block variables
+	- var title = "Vier Jahreszeiten Kempinski München"
+extends layouts/layout_en
 
 block content
 	+breadcrumbs()
-		+breadcrumb("index_rs.html") Pocetna
-		+breadcrumb("eu_cities.html") Evropski gradovi
-		+breadcrumb("munich_rs.html") Minhen
+		+breadcrumb("index_en.html") Home
+		+breadcrumb("eu_cities_en.html") European cities
+		+breadcrumb("munich_en.html") Munich
 		+breadcrumb() Vier Jahreszeiten Kempinski München
+
 
 	.row
 		.col-md-6.col-md-offset-3
-			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Show current reservations
 	.row.top-padded
 
 	#my-content
@@ -18,10 +21,9 @@ block content
 		3, 
 		["../assets/img/munich_kempinski_2.jpg", "../assets/img/munich_kempinski_3.jpg"],
 		 "../assets/img/munich_kempinski_1.jpg",
-		 "Ovaj hotel sa 5 zvezdica poseduje elegantan spa centar sa bazenom i nudi panoramski pogled na grad. Smešten je u centru Minhena, na 5 minuta hoda od Trga Marijenplac. ",
-		 "U svakoj sobi obezbeđen je iPad koji se može koristiti za rezervisanje hotelskih sadržaja ili za pretragu informacija o hotelu. Svaki iPad se takođe može koristiti za naručivanje posluge u sobi i za podešavanje svetla i klima-uređaja. Gosti mogu poneti iPad u spa centar i u lobi.",
-		 "Hotel Vier Jahreszeiten Kempinski München raspolaže elegantnim i moderno uređenim sobama. Sve klimatizovane sobe sadrže TV, mini-bar i svetlo kupatilo sa bade-mantilima."
-		 )
+		 "This 5-star hotel possesses an elegant spa center with a swimming pool and offers panoramic views of the city . Located in the center of Munich, a 5-minute walk from Marienplatz .",
+		 "Each room is provided iPad that can be used for the provision of hotel facilities or to search for information about the hotel . Every iPad can also be used to order room service , and to adjust the lights and air-conditioners. Guests can take the iPad spa center and the lobby .",
+		 "Hotel Vier Jahreszeiten Kempinski München offers stylish and modern rooms . All air-conditioned rooms are equipped with TV, mini - bar and a bright bathroom with a bathrobe .", "en")
 
 
 block scripts
@@ -104,12 +106,12 @@ block scripts
 								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum polaska')))
+													.append($('<label>').text('Departure date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_start))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum dolaska')))
+													.append($('<label>').text('Arrival date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_end))))
 										.append($('<div>').attr('class', 'row')
@@ -119,17 +121,17 @@ block scripts
 													.append($('<div>').text(value.email))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj ljudi')))
+													.append($('<label>').text('No. of people')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.person_num))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Kartica')))
+													.append($('<label>').text('Card')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.select_card))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj Kartice')))
+													.append($('<label>').text('Card no.')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.card_num)))))).html();
 					html += dom + "\n";

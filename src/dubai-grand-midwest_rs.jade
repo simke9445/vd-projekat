@@ -1,0 +1,144 @@
+block variables
+	- var title = "GRAND MIDWEST EXPRESS HOTEL APARTMENTS"
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() GRAND MIDWEST EXPRESS HOTEL APARTMENTS
+
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
+	#my-content
+	
+	+details(
+		3, 
+		["http://placehold.it/500x300", "http://placehold.it/500x300", "http://placehold.it/500x300"],
+		 "http://placehold.it/500x300",
+		 "Smešten u Discovery Garden delu grada. Tržni centar Ibn Battuta nalazi se na 10 minuta hoda od hotela kao i stanice metroa na crvenoj liniji. Dubai Marina i kompleks Jumeirah beach Residence udaljeni su oko 3 km. Do ekonomske zone Dubai World Central može se stići za 30 minuta vožnje. Marina gradska Plaža se nalazi manje od 10 minuta vožnje taksijem, oko 5km od hotela (oko 4-5€ taksijem)",
+		 "Sobe u hotelu imaju moderan enterijer i dele se na Studio standard (oko 45m2), Studio Deluxe (oko 45m2), One Bedroom Deluxe (oko 95m2). Sve smeštajne jedinice imaju terasu, kuhinju, klimu, kablovsku TV, internet (Wi-Fi i kablovski), fen, sef, peglu i dasku za peglanje i mašinu za pranje veša.",
+		 " Na 6. spratu objekta nalazi se potpuno opremljena teretana, a u nivou lobija poslovni centar. Svi gosti objekta Grand Midwest mogu koristiti garažu u podrumu. U kafeu objekta Grand Midwest u prizemlju služi se doručak na bazi švedskog stola"
+		 )
+
+block scripts
+	script.
+		var opened = false;
+
+		(function(){
+			$("#reservation_form").validate({
+				rules:{
+					'date-start': {
+						required: true,
+						date: true
+					},
+					'date-end': {
+						required: true,
+						date: true
+					},
+					'email': {
+						required: true,
+						email: true
+					},
+					'person-num': {
+						required: true
+					},
+					'card-num': {
+						required: true,
+						creditcard: true
+					}
+
+				},
+				messages: {
+					'date-start': "Please enter a valid starting date",
+					'date-end': "Please enter a valid end date",
+					'email': "Please enter a valid email address",
+					'person-num': "Please enter a valid person number",
+					'card-num': "Please enter a valid card number"
+				},
+				submitHandler: function() {
+					if ($('#reservation_form').valid()){
+						var date = new Date();
+						var minutes = 7*24*60;
+						date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+						Cookies.set("dubai-grand-midwest" + date + date.getMilliseconds(), {
+							name: 'dubai-grand-midwest',
+							date_start: $('#date-start').val(),
+							date_end : $('#date-end').val(),
+							email : $('#email').val(),
+							person_num : $('#person-num').val(),
+							select_card : $('#select-card').val(),
+							card_num : $('#card-num').val()
+						}, { expires: date });
+
+						if (opened){
+							$('#my-content').empty();
+							opened = false;
+						}
+					}	
+
+					return;
+				}
+			});
+			
+		})();
+
+		$('#showReservations').on('click', function(){
+			var jsonData = Cookies.getJSON();
+			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
+
+			$.each(jsonData, function(key, value) {
+
+				if(value.name == "dubai-grand-midwest"){
+					var dom = $('<div>').append($('<div>').attr('class', 'row')
+								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum polaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_start))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum dolaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_end))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Email')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.email))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj ljudi')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.person_num))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Kartica')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.select_card))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj Kartice')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.card_num)))))).html();
+					html += dom + "\n";
+				}
+
+			});
+
+
+			$("#my-content").html(html);
+			opened = true;
+		});

@@ -1,0 +1,144 @@
+block variables
+	- var title = "AL DIAR BARSHA HOTEL APARTMENT"
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() AL DIAR BARSHA HOTEL APARTMENT
+
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
+	#my-content
+
+	+details(
+		4, 
+		["../assets/img/al-diar-barsha-hotel-carousel-1.jpg", "../assets/img/al-diar-barsha-hotel-carousel-2.jpg", "../assets/img/al-diar-barsha-hotel-carousel-3.jpg"],
+		 "../assets/img/al-diar-barsha-hotel.jpg",
+		 "Hotel se nalazi u Al Barshi, 5 minuta hoda od Emirates mall-a.",
+		 " Restoran, recepcija radi non-stop, dnevna štampa, sobe za nepušače, porodične sobe, lift, ekspresno prijavljivanje i odjavljivanje, sef, ostava za prtljag, klima, fitness centar, otvoreni bazen. U hotelu postoji usluga pranja vesa, hemijsko, čišćenje, doručak u sobi, usluga peglanja, menjačnica, faks/fotokopiranje",
+		 "Hotel nudi jednokrevetne i dvokrevetne apartmane, sa velikim dnevnim boravkom sa SAT TV, opremljenom kuhinjom i modernim kupatilom Usluga: Noćenje sa doručkom"
+		 )
+
+block scripts
+	script.
+		var opened = false;
+
+		(function(){
+			$("#reservation_form").validate({
+				rules:{
+					'date-start': {
+						required: true,
+						date: true
+					},
+					'date-end': {
+						required: true,
+						date: true
+					},
+					'email': {
+						required: true,
+						email: true
+					},
+					'person-num': {
+						required: true
+					},
+					'card-num': {
+						required: true,
+						creditcard: true
+					}
+
+				},
+				messages: {
+					'date-start': "Please enter a valid starting date",
+					'date-end': "Please enter a valid end date",
+					'email': "Please enter a valid email address",
+					'person-num': "Please enter a valid person number",
+					'card-num': "Please enter a valid card number"
+				},
+				submitHandler: function() {
+					if ($('#reservation_form').valid()){
+						var date = new Date();
+						var minutes = 7*24*60;
+						date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+						Cookies.set("dubai-al-diar" + date + date.getMilliseconds(), {
+							name: 'dubai-al-diar',
+							date_start: $('#date-start').val(),
+							date_end : $('#date-end').val(),
+							email : $('#email').val(),
+							person_num : $('#person-num').val(),
+							select_card : $('#select-card').val(),
+							card_num : $('#card-num').val()
+						}, { expires: date });
+
+						if (opened){
+							$('#my-content').empty();
+							opened = false;
+						}
+					}	
+
+					return;
+				}
+			});
+			
+		})();
+
+		$('#showReservations').on('click', function(){
+			var jsonData = Cookies.getJSON();
+			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
+
+			$.each(jsonData, function(key, value) {
+
+				if(value.name == "dubai-al-diar"){
+					var dom = $('<div>').append($('<div>').attr('class', 'row')
+								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum polaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_start))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum dolaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_end))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Email')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.email))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj ljudi')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.person_num))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Kartica')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.select_card))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj Kartice')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.card_num)))))).html();
+					html += dom + "\n";
+				}
+
+			});
+
+
+			$("#my-content").html(html);
+			opened = true;
+		});

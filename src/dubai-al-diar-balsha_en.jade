@@ -1,27 +1,28 @@
-extends layouts/layout_rs
+block variables
+	- var title = "AL DIAR BARSHA HOTEL APARTMENT"
+extends layouts/layout_en
 
 block content
 	+breadcrumbs()
-		+breadcrumb("index_rs.html") Pocetna
-		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
-		+breadcrumb("dubai_rs.html") Dubai
-		+breadcrumb() SKYLINE DELUX HOTEL
+		+breadcrumb("index_en.html") Home
+		+breadcrumb("new_year_2016_en.html") New Year's 2016
+		+breadcrumb("dubai_en.html") Dubai
+		+breadcrumb() AL DIAR BARSHA HOTEL APARTMENT
 
 	.row
 		.col-md-6.col-md-offset-3
-			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Show current reservations
 	.row.top-padded
 
 	#my-content
 
 	+details(
 		4, 
-		["../assets/img/skyline-deluxe-hotel-carousel-1.jpg", "../assets/img/skyline-deluxe-hotel-carousel-2.jpg", "../assets/img/skyline-deluxe-hotel-carousel-3.jpg"],
-		 "../assets/img/skyline-deluxe-hotel.jpg",
-		 "Smešten u Al Rikka ulici, ovaj hotel se nalazi u blizini Al Rikka metro stanice (oko 5 minuta hoda), 2km od Deira City Centra i samo 5 km od međunarodnog aerodroma Dubai. Zahvaljujući svojoj lokaciji u Deira Maktum ulici, pored Taj Palace i Dubai Clock Tower, gosti će imati lak pristup centru grada, poslovnim prostorima i tržnim centrima. Plaže Al Mamzar i Jumeira Public Beach su podjednako udaljene od hotela (oko 10km – oko 8€ taksijem). Burj Kalifa, Dubai Mall i Jumeirah plaža nalaze se na oko 15 minuta vožnje.",
-		 "U toplom ambijentu, udobnom smeštaju i sa kvalitetnom uslugom, Skyline Deluxe Hotel Apartments je idealno mesto za sve vrste putnika. Skyline hotel Dubai nudi Vam 1 restoran, bazen na krovu hotela, kao i bogat spa i fitnes centar. Sadržaji: prevoz od/do aerodroma, salon lepote, kafić, iznajmljivanje automobila, menjačnica, doktor na poziv, usluge vešeraja, lift, porodične sobe, fitnes centar, zdravstveni klub, masaža, spoljni bazen, sauna, sap, dnevne novine, sef, lobi, obezbeđenje, parking, nepušačke sobe, čistač cipela.",
-		 "Hotel broji 91 sobu. Sve jedinice su ukusno uređene i opremljene modernim sadržajima za komfor gostiju, uključujući LCD SAT TV, sef, klima-uređaj i pristup internetu. Svaka soba ima i prostrana kupatila sa svim dodatnim kuaptilskim sadržajima."
-		 )
+		["../assets/img/al-diar-barsha-hotel-carousel-1.jpg", "../assets/img/al-diar-barsha-hotel-carousel-2.jpg", "../assets/img/al-diar-barsha-hotel-carousel-3.jpg"],
+		 "../assets/img/al-diar-barsha-hotel.jpg",
+		 "The hotel is located in Al Barsha , 5 minutes walk from the Emirates mall .",
+		 " Restaurant, reception is non -stop , daily newspapers, non-smoking rooms , family rooms , elevator, express check-out , safe deposit , baggage storage room , air conditioning, fitness center, outdoor pool . In the hotel there is a laundry service, chemical cleaning, Breakfast in the Room , Ironing Service , Currency Exchange, Fax / Photocopying",
+		 "Hotel offers single and double apartments , with large living room with satellite TV, fully equipped kitchen and modern bathroom Service: Bed & Breakfast", "en")
 
 block scripts
 	script.
@@ -64,8 +65,8 @@ block scripts
 						var minutes = 7*24*60;
 						date.setTime(date.getTime() + (minutes * 60 * 1000));
 
-						Cookies.set("dubai-skyline-delux" + date + date.getMilliseconds(), {
-							name: 'dubai-skyline-delux',
+						Cookies.set("dubai-al-diar" + date + date.getMilliseconds(), {
+							name: 'dubai-al-diar',
 							date_start: $('#date-start').val(),
 							date_end : $('#date-end').val(),
 							email : $('#email').val(),
@@ -98,17 +99,17 @@ block scripts
 
 			$.each(jsonData, function(key, value) {
 
-				if(value.name == "dubai-skyline-delux"){
+				if(value.name == "dubai-al-diar"){
 					var dom = $('<div>').append($('<div>').attr('class', 'row')
 								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum polaska')))
+													.append($('<label>').text('Departure date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_start))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum dolaska')))
+													.append($('<label>').text('Arrival date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_end))))
 										.append($('<div>').attr('class', 'row')
@@ -118,17 +119,17 @@ block scripts
 													.append($('<div>').text(value.email))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj ljudi')))
+													.append($('<label>').text('No. of people')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.person_num))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Kartica')))
+													.append($('<label>').text('Card')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.select_card))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj Kartice')))
+													.append($('<label>').text('Card no.')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.card_num)))))).html();
 					html += dom + "\n";

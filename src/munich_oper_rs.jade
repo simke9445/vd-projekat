@@ -3,9 +3,10 @@ extends layouts/layout_rs
 block content
 	+breadcrumbs()
 		+breadcrumb("index_rs.html") Pocetna
-		+breadcrumb("eu_cities.html") Evropski gradovi
+		+breadcrumb("eu_cities_rs.html") Evropski gradovi
 		+breadcrumb("munich_rs.html") Minhen
-		+breadcrumb() Hotel Königshof
+		+breadcrumb() Hotel an der Oper
+
 
 	.row
 		.col-md-6.col-md-offset-3
@@ -16,12 +17,13 @@ block content
 
 	+details(
 		3, 
-		["../assets/img/munich_konigshof_2.jpg", "../assets/img/munich_konigshof_3.jpg"],
-		 "../assets/img/munich_konigshof_1.jpg",
+		["../assets/img/munich_oper_2.jpg", "../assets/img/munich_oper_3.jpg"],
+		 "../assets/img/munich_oper_1.jpg",
 		 "Ovaj hotel sa 5 zvezdica poseduje elegantan spa centar sa bazenom i nudi panoramski pogled na grad. Smešten je u centru Minhena, na 5 minuta hoda od Trga Marijenplac. ",
 		 "U svakoj sobi obezbeđen je iPad koji se može koristiti za rezervisanje hotelskih sadržaja ili za pretragu informacija o hotelu. Svaki iPad se takođe može koristiti za naručivanje posluge u sobi i za podešavanje svetla i klima-uređaja. Gosti mogu poneti iPad u spa centar i u lobi.",
 		 "Hotel Vier Jahreszeiten Kempinski München raspolaže elegantnim i moderno uređenim sobama. Sve klimatizovane sobe sadrže TV, mini-bar i svetlo kupatilo sa bade-mantilima."
 		 )
+
 
 block scripts
 	script.
@@ -64,8 +66,8 @@ block scripts
 						var minutes = 7*24*60;
 						date.setTime(date.getTime() + (minutes * 60 * 1000));
 
-						Cookies.set("munich_konigshof" + date + date.getMilliseconds(), {
-							name: 'munich_konigshof',
+						Cookies.set("munich_oper" + date + date.getMilliseconds(), {
+							name: 'munich_oper',
 							date_start: $('#date-start').val(),
 							date_end : $('#date-end').val(),
 							email : $('#email').val(),
@@ -98,7 +100,7 @@ block scripts
 
 			$.each(jsonData, function(key, value) {
 
-				if(value.name == "munich_konigshof"){
+				if(value.name == "munich_oper"){
 					var dom = $('<div>').append($('<div>').attr('class', 'row')
 								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
 										.append($('<div>').attr('class', 'row')

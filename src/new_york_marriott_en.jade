@@ -1,15 +1,18 @@
-extends layouts/layout_rs
+block variables
+	- var title = "New York Marriott Marquis"
+extends layouts/layout_en
 
 block content
 	+breadcrumbs()
-		+breadcrumb("index_rs.html") Pocetna
-		+breadcrumb("far_dest.html") Daleke destinacije
-		+breadcrumb("new_york_rs.html") Njujork
+		+breadcrumb("index_en.html") Home
+		+breadcrumb("far_dest_en.html") Faraway destinations
+		+breadcrumb("new_york_en.html") New York
 		+breadcrumb() New York Marriott Marquis
+
 
 	.row
 		.col-md-6.col-md-offset-3
-			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Show current reservations
 	.row.top-padded
 
 	#my-content
@@ -18,10 +21,9 @@ block content
 		3, 
 		["../assets/img/new_york_marriott_2.jpg", "../assets/img/new_york_marriott_3.jpg"],
 		 "../assets/img/new_york_marriott_1.jpg",
-		 "Smešten u Njujorku, ovaj objekat je udaljen 1 blok od Tajms Skvera. U ponudi su smeštajne jedinice sa kompletno opremljenom kuhinjom i odvojenim dnevnim boravkom u kojem se nalazi flat-screen TV.",
-		 "Prema nezavisnim recenzijama, naši gosti obožavaju ovaj deo destinacije Njujork. Ova oblast je odlična za šoping, sa popularnim brendovima u blizini: Apple, Tiffany & Co, H&M, Prada, Nike",
-		 "Smeštajne jedinice u objektu AKA Times Square imaju velike sobe sa brodskim podom i modernim nameštajem. Gostima su na raspolaganju mašine za pranje i sušenje veša. Kupatila su opremljena velikom staklenom tuš kabinom i toaletnim priborom."
-		 )
+		 "Located in New York, this property is located 1 block from Times Square . It offers accommodation with a fully equipped kitchen and separate living room where there is a flat -screen TV .",
+		 "According to independent reviews of our guests adore this part of destination New York . This area is great for shopping , with popular brands near Apple, Tiffany & Co. , H & M , Prada , Nike",
+		 "Units at the AKA Times Square are large rooms with wooden floor and modern furniture. Guests have access to washing machines and dryers . Bathrooms are equipped with a large glass shower and toiletries.", "en")
 
 
 block scripts
@@ -104,12 +106,12 @@ block scripts
 								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum polaska')))
+													.append($('<label>').text('Departure date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_start))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Datum dolaska')))
+													.append($('<label>').text('Arrival date')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.date_end))))
 										.append($('<div>').attr('class', 'row')
@@ -119,17 +121,17 @@ block scripts
 													.append($('<div>').text(value.email))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj ljudi')))
+													.append($('<label>').text('No. of people')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.person_num))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Kartica')))
+													.append($('<label>').text('Card')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.select_card))))
 										.append($('<div>').attr('class', 'row')
 												.append($('<div>').attr('class', 'col-md-6 text-center')
-													.append($('<label>').text('Broj Kartice')))
+													.append($('<label>').text('Card no.')))
 												.append($('<div>').attr('class', 'col-md-6 text-center')
 													.append($('<div>').text(value.card_num)))))).html();
 					html += dom + "\n";

@@ -149,72 +149,136 @@ mixin details_carousel(num_slides, pictures, active_picture)
             span.sr-only Next
 
 //- main details mixin
-mixin details(num_pictures, pictures, active_picture, actions, benefits, prices)
+mixin details(num_pictures, pictures, active_picture, actions, benefits, prices, lang)
     .row
         .col-md-8.col-md-offset-2
             +details_carousel(num_pictures, pictures, active_picture)
-    .row.top-padded
-        .col-md-4.col-md-offset-2
-            .row.text-center
-                h4 Lokacija
-                p.top-padded= actions
-            .row.text-center
-                h4 Sadrzaj
-                p.top-padded= benefits
-            .row.text-center
-                h4 Sobe
-                p.top-padded= prices
-            .row.text-center
-                h4 Cene
-                .row
-                    .col-md-6.text-right
-                        label do 7 dana
-                    .col-md-6.text-left
-                        label 45$ po danu
-                .row
-                    .col-md-6.text-right
-                        label do 14 dana
-                    .col-md-6.text-left
-                        label 34$ po danu
-                .row
-                    .col-md-6.text-right
-                        label do 21 dana
-                    .col-md-6.text-left
-                        label 30$ po danu
-                .row
-                    .col-md-6.text-right
-                        label preko 21 dana
-                    .col-md-6.text-left
-                        label 25$ po danu
-            .row.text-center
-                a.text-center(href="../cenovnik.pdf" download="cene.pdf") Preuzmi cene.
-        .col-md-3.col-md-offset-1
-            form(id="reservation_form")
-                h4.text-center Rezervisite dolazak!
-                .form-group.text-center.top-padded-xs
-                    label.control-label.text-center(for="date-start") Datum polaska
-                    input.form-control(type="date" id="date-start" name="date-start")
-                .form-group.text-center
-                    label.control-label.text-center(for="date-end") Datum dolaska
-                    input.form-control(type="date" id="date-end" name="date-end")
-                .form-group.text-center
-                    label.control-label.text-center(for="email") Email
-                    input.form-control(type="text" id="email" name="email")
-                .form-group.text-center
-                    label.control-label.text-center(for="person-num") Broj osoba
-                    input.form-control(type="number" placeholder=0 id="person-num" name="person-num")
-                .form-group.text-center
-                    label.control-label.text-center(for="select-card") Tip Kreditne Kartice
-                    select.form-control(id="select-card" name="select-card")
-                        option VISA
-                        option MasterCard
-                        option American Express
-                .form-group
-                    label.control-label.text-center(for="card-num") Broj kreditne kartice
-                    input.form-control(type="number" placeholder=0 id="card-num" name="card-num")
+    if lang === "en"
+        .row.top-padded
+            .col-md-4.col-md-offset-2
+                .row.text-center
+                    h4 Location
+                    p= actions
+                .row.text-center
+                    h4.top-padded Benefits
+                    p= benefits
+                .row.text-center
+                    h4.top-padded Rooms
+                    p= prices
+                .row.text-center
+                    h4.top-padded Prices
+                    .row
+                        .col-md-6.text-right
+                            label up to 7 days
+                        .col-md-6.text-left
+                            label 45$ per day
+                    .row
+                        .col-md-6.text-right
+                            label up to 14 days
+                        .col-md-6.text-left
+                            label 34$ per day
+                    .row
+                        .col-md-6.text-right
+                            label up to 21 days
+                        .col-md-6.text-left
+                            label 30$ per day
+                    .row
+                        .col-md-6.text-right
+                            label over 21 days
+                        .col-md-6.text-left
+                            label 25$ per day
+                .row.text-center
+                    a.text-center(href="../cenovnik.pdf" download="cene.pdf") Download (pdf)
+            .col-md-3.col-md-offset-1
+                form(id="reservation_form")
+                    h4.text-center Make a reservation!
+                    .form-group.text-center.top-padded-xs
+                        label.control-label.text-center(for="date-start") Arrival date
+                        input.form-control(type="date" id="date-start" name="date-start")
+                    .form-group.text-center
+                        label.control-label.text-center(for="date-end") Departure date
+                        input.form-control(type="date" id="date-end" name="date-end")
+                    .form-group.text-center
+                        label.control-label.text-center(for="email") Email
+                        input.form-control(type="text" id="email" name="email")
+                    .form-group.text-center
+                        label.control-label.text-center(for="person-num") No. of people
+                        input.form-control(type="number" placeholder=0 id="person-num" name="person-num")
+                    .form-group.text-center
+                        label.control-label.text-center(for="select-card") Card
+                        select.form-control(id="select-card" name="select-card")
+                            option VISA
+                            option MasterCard
+                            option American Express
+                    .form-group
+                        label.control-label.text-center(for="card-num") Card no.
+                        input.form-control(type="number" placeholder=0 id="card-num" name="card-num")
 
-                .form-group
-                    input.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton" value="Napravi Rezervaciju!")
+                    .form-group
+                        input.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton" value="Reserve!")
+    else        
+        .row.top-padded
+            .col-md-4.col-md-offset-2
+                .row.text-center
+                    h4 Lokacija
+                    p= actions
+                .row.text-center
+                    h4.top-padded Sadrzaj
+                    p= benefits
+                .row.text-center
+                    h4.top-padded Sobe
+                    p= prices
+                .row.text-center
+                    h4.top-padded Cene
+                    .row
+                        .col-md-6.text-right
+                            label do 7 dana
+                        .col-md-6.text-left
+                            label 45$ po danu
+                    .row
+                        .col-md-6.text-right
+                            label do 14 dana
+                        .col-md-6.text-left
+                            label 34$ po danu
+                    .row
+                        .col-md-6.text-right
+                            label do 21 dana
+                        .col-md-6.text-left
+                            label 30$ po danu
+                    .row
+                        .col-md-6.text-right
+                            label preko 21 dana
+                        .col-md-6.text-left
+                            label 25$ po danu
+                .row.text-center
+                    a.text-center(href="../cenovnik.pdf" download="cene.pdf") Preuzmi cene (pdf)
+            .col-md-3.col-md-offset-1
+                form(id="reservation_form")
+                    h4.text-center Rezervisite dolazak!
+                    .form-group.text-center.top-padded-xs
+                        label.control-label.text-center(for="date-start") Datum dolaska
+                        input.form-control(type="date" id="date-start" name="date-start")
+                    .form-group.text-center
+                        label.control-label.text-center(for="date-end") Datum odlaska
+                        input.form-control(type="date" id="date-end" name="date-end")
+                    .form-group.text-center
+                        label.control-label.text-center(for="email") Email
+                        input.form-control(type="text" id="email" name="email")
+                    .form-group.text-center
+                        label.control-label.text-center(for="person-num") Broj osoba
+                        input.form-control(type="number" placeholder=0 id="person-num" name="person-num")
+                    .form-group.text-center
+                        label.control-label.text-center(for="select-card") Tip Kreditne Kartice
+                        select.form-control(id="select-card" name="select-card")
+                            option VISA
+                            option MasterCard
+                            option American Express
+                    .form-group
+                        label.control-label.text-center(for="card-num") Broj kreditne kartice
+                        input.form-control(type="number" placeholder=0 id="card-num" name="card-num")
+
+                    .form-group
+                        input.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton" value="Napravi Rezervaciju!")
     .row.top-padded.text-center
         script(type='text/javascript', src='http://maps.google.com/maps/api/js?sensor=false')
         div(style='margin:0 auto 0 auto;overflow:hidden;height:400px;width:700px;')
