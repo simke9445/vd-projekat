@@ -78,10 +78,9 @@ mixin button(style, href, size)
 //- Thumbnail with title mixin
 
 mixin header(title)
-    .row
+    .row( style="clear: both" )
         .col-lg-12
             h1.page-header= title
-
     block
 
 mixin thumb(href, title, src)
