@@ -28,26 +28,64 @@ block scripts
 	script.
 		var opened = false;
 
-		$('#reserveButton').on('click', function(){
-			var date = new Date();
-			var minutes = 7*24*60;
-			date.setTime(date.getTime() + (minutes * 60 * 1000));
+		(function(){
+			$("#reservation_form").validate({
+				rules:{
+					'date-start': {
+						required: true,
+						date: true
+					},
+					'date-end': {
+						required: true,
+						date: true
+					},
+					'email': {
+						required: true,
+						email: true
+					},
+					'person-num': {
+						required: true
+					},
+					'card-num': {
+						required: true,
+						creditcard: true
+					}
 
-			Cookies.set("new_york_marriott" + date + date.getMilliseconds(), {
-				name: 'new_york_marriott',
-				date_start: $('#date-start').val(),
-				date_end : $('#date-end').val(),
-				email : $('#email').val(),
-				person_num : $('#person-num').val(),
-				select_card : $('#select-card').val(),
-				card_num : $('#card-num').val()
-			}, { expires: date });
+				},
+				messages: {
+					'date-start': "Please enter a valid starting date",
+					'date-end': "Please enter a valid end date",
+					'email': "Please enter a valid email address",
+					'person-num': "Please enter a valid person number",
+					'card-num': "Please enter a valid card number"
+				},
+				submitHandler: function() {
+					if ($('#reservation_form').valid()){
+						var date = new Date();
+						var minutes = 7*24*60;
+						date.setTime(date.getTime() + (minutes * 60 * 1000));
 
-			if (opened){
-				$('#my-content').empty();
-				opened = false;
-			}
-		});
+						Cookies.set("new_york_marriott" + date + date.getMilliseconds(), {
+							name: 'new_york_marriott',
+							date_start: $('#date-start').val(),
+							date_end : $('#date-end').val(),
+							email : $('#email').val(),
+							person_num : $('#person-num').val(),
+							select_card : $('#select-card').val(),
+							card_num : $('#card-num').val()
+						}, { expires: date });
+
+						if (opened){
+							$('#my-content').empty();
+							opened = false;
+						}
+					}	
+
+					return;
+				}
+			});
+			
+		})();
 
 		$('#showReservations').on('click', function(){
 			var jsonData = Cookies.getJSON();
@@ -60,46 +98,45 @@ block scripts
 			}
 
 			$.each(jsonData, function(key, value) {
-			    console.log(key, value);
 
-			    if(value.name == "new_york_marriott"){
-			    	var dom = $('<div>').append($('<div>').attr('class', 'row')
-			    				.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Datum polaska')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.date_start))))
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Datum dolaska')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.date_end))))
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Email')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.email))))
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Broj ljudi')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.person_num))))
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Kartica')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.select_card))))
-					    				.append($('<div>').attr('class', 'row')
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<label>').text('Broj Kartice')))
-					    						.append($('<div>').attr('class', 'col-md-6 text-center')
-					    							.append($('<div>').text(value.card_num)))))).html();
-			    	console.log(dom);
-			    	html += dom + "\n";
-			    }
+				if(value.name == "new_york_marriott"){
+					var dom = $('<div>').append($('<div>').attr('class', 'row')
+								.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum polaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_start))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Datum dolaska')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.date_end))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Email')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.email))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj ljudi')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.person_num))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Kartica')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.select_card))))
+										.append($('<div>').attr('class', 'row')
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<label>').text('Broj Kartice')))
+												.append($('<div>').attr('class', 'col-md-6 text-center')
+													.append($('<div>').text(value.card_num)))))).html();
+					html += dom + "\n";
+				}
 
 			});
+
 
 			$("#my-content").html(html);
 			opened = true;

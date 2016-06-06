@@ -189,32 +189,32 @@ mixin details(num_pictures, pictures, active_picture, actions, benefits, prices)
             .row.text-center
                 a.text-center(href="../cenovnik.pdf" download="cene.pdf") Preuzmi cene.
         .col-md-3.col-md-offset-1
-            form
+            form(id="reservation_form")
                 h4.text-center Rezervisite dolazak!
                 .form-group.text-center.top-padded-xs
-                    label.control-label.text-center Datum polaska
-                    input.form-control(type="date" id="date-start")
+                    label.control-label.text-center(for="date-start") Datum polaska
+                    input.form-control(type="date" id="date-start" name="date-start")
                 .form-group.text-center
-                    label.control-label.text-center Datum dolaska
-                    input.form-control(type="date" id="date-end")
+                    label.control-label.text-center(for="date-end") Datum dolaska
+                    input.form-control(type="date" id="date-end" name="date-end")
                 .form-group.text-center
-                    label.control-label.text-center Email
-                    input.form-control(type="text" id="email")
+                    label.control-label.text-center(for="email") Email
+                    input.form-control(type="text" id="email" name="email")
                 .form-group.text-center
-                    label.control-label.text-center Broj osoba
-                    input.form-control(type="number" placeholder=0 id="person-num")
+                    label.control-label.text-center(for="person-num") Broj osoba
+                    input.form-control(type="number" placeholder=0 id="person-num" name="person-num")
                 .form-group.text-center
-                    label.control-label.text-center Tip Kreditne Kartice
-                    select.form-control(id="select-card")
+                    label.control-label.text-center(for="select-card") Tip Kreditne Kartice
+                    select.form-control(id="select-card" name="select-card")
                         option VISA
                         option MasterCard
                         option American Express
                 .form-group
-                    label.control-label.text-center Broj kreditne kartice
-                    input.form-control(type="number" placeholder=0 id="card-num")
+                    label.control-label.text-center(for="card-num") Broj kreditne kartice
+                    input.form-control(type="number" placeholder=0 id="card-num" name="card-num")
 
                 .form-group
-                    .btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton") Napravi Rezervaciju!
+                    input.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton" value="Napravi Rezervaciju!")
     .row.top-padded.text-center
         script(type='text/javascript', src='http://maps.google.com/maps/api/js?sensor=false')
         div(style='margin:0 auto 0 auto;overflow:hidden;height:400px;width:700px;')
