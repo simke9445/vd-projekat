@@ -108,7 +108,6 @@ mixin details_preview(img_src, name, description, details ,starting_price, endin
 
 		hr
 
-
 //- Carousel mixin for details pictures
 mixin details_carousel(num_slides, pictures, active_picture)
 	#myCarousel.carousel.slide(data-ride='carousel')
@@ -179,28 +178,28 @@ mixin details(num_pictures, pictures, active_picture, actions, benefits, prices)
 				h4.text-center Rezervisite dolazak!
 				.form-group.text-center.top-padded-xs
 					label.control-label.text-center Datum polaska
-					input.form-control(type="date")
+					input.form-control(type="date" id="date-start")
 				.form-group.text-center
 					label.control-label.text-center Datum dolaska
-					input.form-control(type="date")
+					input.form-control(type="date" id="date-end")
 				.form-group.text-center
 					label.control-label.text-center Email
-					input.form-control(type="text")
+					input.form-control(type="text" id="email")
 				.form-group.text-center
 					label.control-label.text-center Broj osoba
-					input.form-control(type="number" placeholder=0)
+					input.form-control(type="number" placeholder=0 id="person-num")
 				.form-group.text-center
 					label.control-label.text-center Tip Kreditne Kartice
-					select.form-control
+					select.form-control(id="select-card")
 						option VISA
 						option MasterCard
 						option American Express
 				.form-group
 					label.control-label.text-center Broj kreditne kartice
-					input.form-control(type="number" placeholder=0)
+					input.form-control(type="number" placeholder=0 id="card-num")
 
 				.form-group
-					.btn.btn-primary.form-control.pull-left(type="submit") Napravi Rezervaciju!
+					.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton") Napravi Rezervaciju!
 	.row.top-padded.text-center
 
 

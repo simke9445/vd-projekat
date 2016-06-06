@@ -7,6 +7,7 @@ block content
 		+breadcrumb("dubai_rs.html") Dubai
 		+breadcrumb() GRAND MIDWEST EXPRESS HOTEL APARTMENTS
 
+	button.btn.btn-large.btn-success(id="testButton")
 	+details(
 		3, 
 		["http://placehold.it/500x300", "http://placehold.it/500x300", "http://placehold.it/500x300"],
@@ -15,3 +16,38 @@ block content
 		 "Sobe u hotelu imaju moderan enterijer i dele se na Studio standard (oko 45m2), Studio Deluxe (oko 45m2), One Bedroom Deluxe (oko 95m2). Sve smeštajne jedinice imaju terasu, kuhinju, klimu, kablovsku TV, internet (Wi-Fi i kablovski), fen, sef, peglu i dasku za peglanje i mašinu za pranje veša.",
 		 " Na 6. spratu objekta nalazi se potpuno opremljena teretana, a u nivou lobija poslovni centar. Svi gosti objekta Grand Midwest mogu koristiti garažu u podrumu. U kafeu objekta Grand Midwest u prizemlju služi se doručak na bazi švedskog stola"
 		 )
+block scripts
+	script.
+		$('#reserveButton').on('click', function(){
+			var date = new Date();
+			var minutes = 7*24*60;
+			date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+			var test = JSON.stringify({
+				'name': 'Dubai',
+				'date-start': $('#date-start').val(),
+				'date-end' : $('#date-end').val(),
+				'email' : $('#email').val(),
+				'person-num' : $('#person-num').val(),
+				'select-card' : $('#select-card').val(),
+				'card-num' : $('#card-num').val()
+			});
+
+			alert(test);
+
+			Cookies.set("dubai-grand-midwest", {
+				name: 'Dubai',
+				date_start: $('#date-start').val(),
+				date_end : $('#date-end').val(),
+				email : $('#email').val(),
+				person_num : $('#person-num').val(),
+				select_card : $('#select-card').val(),
+				card_num : $('#card-num').val()
+			}, { expires: date });
+		});
+
+		$('#testButton').on('click', function(){
+			var jsonData = Cookies.getJSON();
+
+			console.log(jsonData);
+		});
