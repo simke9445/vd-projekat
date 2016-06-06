@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("eu_cities.html") Evropski gradovi
+		+breadcrumb("munich_rs.html") Minhen
+		+breadcrumb() Vier Jahreszeiten Kempinski München
+
+	+details(
+		3, 
+		["../assets/img/munich_kempinski_2.jpg", "../assets/img/munich_kempinski_3.jpg"],
+		 "../assets/img/munich_kempinski_1.jpg",
+		 "Ovaj hotel sa 5 zvezdica poseduje elegantan spa centar sa bazenom i nudi panoramski pogled na grad. Smešten je u centru Minhena, na 5 minuta hoda od Trga Marijenplac. ",
+		 "U svakoj sobi obezbeđen je iPad koji se može koristiti za rezervisanje hotelskih sadržaja ili za pretragu informacija o hotelu. Svaki iPad se takođe može koristiti za naručivanje posluge u sobi i za podešavanje svetla i klima-uređaja. Gosti mogu poneti iPad u spa centar i u lobi.",
+		 "Hotel Vier Jahreszeiten Kempinski München raspolaže elegantnim i moderno uređenim sobama. Sve klimatizovane sobe sadrže TV, mini-bar i svetlo kupatilo sa bade-mantilima."
+		 )

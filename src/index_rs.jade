@@ -9,6 +9,27 @@ block content
                     .row
                         .form-group
                             .col-md-3
+                                label.control-label.vertical-center Destinacija
+                            .col-md-6
+                                input.form-control.pull-left( type="text" placeholder="unesite mesto" )
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3.text-left
+                                label.control-label.vertical-center Broj osoba
+                            .col-md-6
+                                select.form-control
+                                    option 1
+                                    option( selected ) 2
+                                    option 3+
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3
+                                .btn.btn-primary.btn-block(type="submit") Trazi
+            .col-md-6.text-left
+                form.top-padded
+                    .row
+                        .form-group
+                            .col-md-3
                                 label.control-label.vertical-center Polazak
                             .col-md-6
                                 input.form-control.pull-left( type="date" )
@@ -18,10 +39,6 @@ block content
                                 label.control-label.vertical-center Povratak
                             .col-md-6
                                 input.form-control.pull-left( type="date" )
-                    .row
-                        .form-group
-                            .col-md-3
-                                .btn.btn-primary.btn-block(type="submit") Trazi
 
     +header("Najaktuelnije ponude")
         +thumb("thassos_rs.html", "Tasos / Leto 2016", "../assets/img/thassos.jpg")

@@ -1,208 +1,203 @@
-mixin list
-	ul
-		li wtf
-		li wtf
-		li wtf
-		li wtf
-		li come ON
-
 //- Navbar mixins
 mixin nav(name, id, style)
-	- var style = (typeof style === 'undefined') ? "inverse" : style
-	nav( role="navigation", class=["navbar", "navbar-" + style] )
-		.navbar-header
-			button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#" + id, aria-expanded="false", aria-controls="navbar")
-				span.sr-only Toggle navigation
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(href="#")= name
+    - var style = (typeof style === 'undefined') ? "inverse" : style
+    nav( role="navigation", class=["navbar", "navbar-" + style] )
+        .navbar-header
+            button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#" + id, aria-expanded="false", aria-controls="navbar")
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href="#")= name
 
-		.collapse.navbar-collapse( id=id )
-			ul.nav.navbar-nav
-				block
-			
+        .collapse.navbar-collapse( id=id )
+            ul.nav.navbar-nav
+                block
+            
 mixin nav_item(href, active)
-	li(class=active): a( href=href )
-		block
+    li(class=active): a( href=href )
+        block
 
 mixin nav_item_dropdown(href, active)
-	li(class=["dropdown", active])
-		a.dropdown-toggle( href=href, data-toggle="dropdown", role="button", aria-expanded="false" )= attributes.label
-			span.caret
-		ul.dropdown-menu( role="menu" )
-			block
+    li(class=["dropdown", active])
+        a.dropdown-toggle( href=href, data-toggle="dropdown", role="button", aria-expanded="false" )= attributes.label
+            span.caret
+        ul.dropdown-menu( role="menu" )
+            block
 
 mixin nav_divider
-	li.divider
+    li.divider
 
 mixin nav_header
-	li.dropdown-header
-		block
+    li.dropdown-header
+        block
 
 //- End navbar mixins
 
 //- Breadcrumbs mixin
 
 mixin breadcrumbs
-	ol.breadcrumb
-		block
+    ol.breadcrumb
+        block
 
 mixin breadcrumb(href)
-	if href
-		li: a( href=href )
-			block
-	else
-		li.active
-			block
+    if href
+        li: a( href=href )
+            block
+    else
+        li.active
+            block
 
 //- End breadcrumbs mixin
 
 //- Button mixin
 mixin button(style, href, size)
-	- var style = (typeof style === 'undefined') ? "default" : style
-	- var href = (typeof href === 'undefined') ? "#" : href
-	case size
-		when "large"
-			- size = "btn-lg"
-		when "small"
-			- size = "btn-sm"
-		when "mini"
-			- size = "btn-xs"
+    - var style = (typeof style === 'undefined') ? "default" : style
+    - var href = (typeof href === 'undefined') ? "#" : href
+    case size
+        when "large"
+            - size = "btn-lg"
+        when "small"
+            - size = "btn-sm"
+        when "mini"
+            - size = "btn-xs"
 
-	a( class=["btn", "btn-" + style, size], href=href )
-		block
+    a( class=["btn", "btn-" + style, size], href=href )
+        block
 
 //- End button mixin
 
 //- Thumbnail with title mixin
 
 mixin header(title)
-	.row( style="clear: both" )
-		.col-lg-12
-			h1.page-header= title
-	block
+    .row( style="clear: both" )
+        .col-lg-12
+            h1.page-header= title
+    block
 
 mixin thumb(href, title, src)
-	.col-lg-3.col-md-4.col-xs-6.thumb
-		a.thumbnail( href=href )
-			img.img-responsive( src=src alt="" )
-		h4.text-center= title
+    .col-lg-3.col-md-4.col-xs-6.thumb
+        a.thumbnail( href=href )
+            img.img-responsive( src=src alt="" )
+        h4.text-center= title
 
 //- Details preview mixin
 mixin details_preview(img_src, name, description, details ,starting_price, ending_price)
-	.my-test-preview
-		.row
-			.col-md-5
-				a( href="#" )
-					img.img-responsive( src=img_src alt="" )
-			.col-md-7
-				div(name="price" data-price-starting=starting_price data-price-ending=ending_price) $#{starting_price} - $#{ending_price}
-				h3= name
-				h4 &#9733;&#9733;&#9733;
-				p= description
-				p Pogodnosti:
-				p Besplatan Wi-Fi / Dorucak / Bazen
-				a.btn.btn-primary( href=details ) Detaljnije
-					span.glyphicon.glyphicon-chevron-right
+    .my-test-preview
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src=img_src alt="" )
+            .col-md-7
+                div(name="price" data-price-starting=starting_price data-price-ending=ending_price) $#{starting_price} - $#{ending_price}
+                h3= name
+                h4 &#9733;&#9733;&#9733;
+                p= description
+                p Pogodnosti:
+                p Besplatan Wi-Fi / Dorucak / Bazen
+                a.btn.btn-primary( href=details ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
 
-		hr
+        hr
 
 //- Carousel mixin for details pictures
 mixin details_carousel(num_slides, pictures, active_picture)
-	#myCarousel.carousel.slide(data-ride='carousel')
-		// Indicators
-		ol.carousel-indicators
-			li.active.img-indicators(data-target='#myCarousel', data-slide-to='0')
-				img.img-responsive(src=active_picture)
-			- var n = 1
-			while n < num_slides
-				li.img-indicators(data-target='#myCarousel', data-slide-to=n++)
-					img.img-responsive(src="#{pictures[n-2]}")
-		.carousel-inner(role='listbox')
-			.item.active
-				img.img-responsive(src=active_picture)
-			each picture in pictures
-				.item
-					img.img-responsive(src=picture)
-		// Left and right controls
-		a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
-			span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
-			span.sr-only Previous
-		a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
-			span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
-			span.sr-only Next
+    #myCarousel.carousel.slide(data-ride='carousel')
+        // Indicators
+        ol.carousel-indicators
+            li.active.img-indicators(data-target='#myCarousel', data-slide-to='0')
+                img.img-responsive(src=active_picture)
+            - var n = 1
+            while n < num_slides
+                li.img-indicators(data-target='#myCarousel', data-slide-to=n++)
+                    img.img-responsive(src="#{pictures[n-2]}")
+        .carousel-inner(role='listbox')
+            .item.active
+                img.img-responsive(src=active_picture)
+            each picture in pictures
+                .item
+                    img.img-responsive(src=picture)
+        // Left and right controls
+        a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+            span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+            span.sr-only Previous
+        a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+            span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+            span.sr-only Next
 
 //- main details mixin
 mixin details(num_pictures, pictures, active_picture, actions, benefits, prices)
-	.row
-		.col-md-8.col-md-offset-2
-			+details_carousel(num_pictures, pictures, active_picture)
-	.row.top-padded
-		.col-md-4.col-md-offset-2
-			.row.text-center
-				h4 Lokacija
-				p.top-padded= actions
-			.row.text-center
-				h4 Sadrzaj
-				p.top-padded= benefits
-			.row.text-center
-				h4 Sobe
-				p.top-padded= prices
-			.row.text-center
-				h4 Cene
-				.row
-					.col-md-6.text-right
-						label do 7 dana
-					.col-md-6.text-left
-						label 45$ po danu
-				.row
-					.col-md-6.text-right
-						label do 14 dana
-					.col-md-6.text-left
-						label 34$ po danu
-				.row
-					.col-md-6.text-right
-						label do 21 dana
-					.col-md-6.text-left
-						label 30$ po danu
-				.row
-					.col-md-6.text-right
-						label preko 21 dana
-					.col-md-6.text-left
-						label 25$ po danu
-			.row.text-center
-				a.text-center(href="#" download="cene.pdf") Preuzmi cene.
-		.col-md-3.col-md-offset-1
-			form
-				h4.text-center Rezervisite dolazak!
-				.form-group.text-center.top-padded-xs
-					label.control-label.text-center Datum polaska
-					input.form-control(type="date" id="date-start")
-				.form-group.text-center
-					label.control-label.text-center Datum dolaska
-					input.form-control(type="date" id="date-end")
-				.form-group.text-center
-					label.control-label.text-center Email
-					input.form-control(type="text" id="email")
-				.form-group.text-center
-					label.control-label.text-center Broj osoba
-					input.form-control(type="number" placeholder=0 id="person-num")
-				.form-group.text-center
-					label.control-label.text-center Tip Kreditne Kartice
-					select.form-control(id="select-card")
-						option VISA
-						option MasterCard
-						option American Express
-				.form-group
-					label.control-label.text-center Broj kreditne kartice
-					input.form-control(type="number" placeholder=0 id="card-num")
+    .row
+        .col-md-8.col-md-offset-2
+            +details_carousel(num_pictures, pictures, active_picture)
+    .row.top-padded
+        .col-md-4.col-md-offset-2
+            .row.text-center
+                h4 Lokacija
+                p.top-padded= actions
+            .row.text-center
+                h4 Sadrzaj
+                p.top-padded= benefits
+            .row.text-center
+                h4 Sobe
+                p.top-padded= prices
+            .row.text-center
+                h4 Cene
+                .row
+                    .col-md-6.text-right
+                        label do 7 dana
+                    .col-md-6.text-left
+                        label 45$ po danu
+                .row
+                    .col-md-6.text-right
+                        label do 14 dana
+                    .col-md-6.text-left
+                        label 34$ po danu
+                .row
+                    .col-md-6.text-right
+                        label do 21 dana
+                    .col-md-6.text-left
+                        label 30$ po danu
+                .row
+                    .col-md-6.text-right
+                        label preko 21 dana
+                    .col-md-6.text-left
+                        label 25$ po danu
+            .row.text-center
+                a.text-center(href="../cenovnik.pdf" download="cene.pdf") Preuzmi cene.
+        .col-md-3.col-md-offset-1
+            form
+                h4.text-center Rezervisite dolazak!
+                .form-group.text-center.top-padded-xs
+                    label.control-label.text-center Datum polaska
+                    input.form-control(type="date")
+                .form-group.text-center
+                    label.control-label.text-center Datum dolaska
+                    input.form-control(type="date")
+                .form-group.text-center
+                    label.control-label.text-center Email
+                    input.form-control(type="text")
+                .form-group.text-center
+                    label.control-label.text-center Broj osoba
+                    input.form-control(type="number" placeholder=0)
+                .form-group.text-center
+                    label.control-label.text-center Tip Kreditne Kartice
+                    select.form-control
+                        option VISA
+                        option MasterCard
+                        option American Express
+                .form-group
+                    label.control-label.text-center Broj kreditne kartice
+                    input.form-control(type="number" placeholder=0)
 
-				.form-group
-					.btn.btn-primary.form-control.pull-left(type="submit" id="reserveButton") Napravi Rezervaciju!
-	.row.top-padded.text-center
-
-
-	
-		
-
+                .form-group
+                    .btn.btn-primary.form-control.pull-left(type="submit") Napravi Rezervaciju!
+    .row.top-padded.text-center
+        script(type='text/javascript', src='http://maps.google.com/maps/api/js?sensor=false')
+        div(style='margin:0 auto 0 auto;overflow:hidden;height:400px;width:700px;')
+          #gmap_canvas(style='height:400px;width:700px;')
+            style.
+              #gmap_canvas img{max-width:none!important;background:none!important}
+            a#get-map-data.google-map-code(href='http://www.themecircle.net/wordpress-one-page/') wordpress one page theme
+        script(type='text/javascript').
+          function init_map(){var myOptions = {zoom:11,center:new google.maps.LatLng(40.614066861887004,24.612093191528402),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.614066861887004, 24.612093191528402)});infowindow = new google.maps.InfoWindow({content:"<b>Hotel</b><br/>Ul. Zvonka Bogdana<br/> Thassos" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});}google.maps.event.addDomListener(window, 'load', init_map);

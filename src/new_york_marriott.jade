@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("far_dest.html") Daleke destinacije
+		+breadcrumb("new_york_rs.html") Njujork
+		+breadcrumb() New York Marriott Marquis
+
+	+details(
+		3, 
+		["../assets/img/new_york_marriott_2.jpg", "../assets/img/new_york_marriott_3.jpg"],
+		 "../assets/img/new_york_marriott_1.jpg",
+		 "Smešten u Njujorku, ovaj objekat je udaljen 1 blok od Tajms Skvera. U ponudi su smeštajne jedinice sa kompletno opremljenom kuhinjom i odvojenim dnevnim boravkom u kojem se nalazi flat-screen TV.",
+		 "Prema nezavisnim recenzijama, naši gosti obožavaju ovaj deo destinacije Njujork. Ova oblast je odlična za šoping, sa popularnim brendovima u blizini: Apple, Tiffany & Co, H&M, Prada, Nike",
+		 "Smeštajne jedinice u objektu AKA Times Square imaju velike sobe sa brodskim podom i modernim nameštajem. Gostima su na raspolaganju mašine za pranje i sušenje veša. Kupatila su opremljena velikom staklenom tuš kabinom i toaletnim priborom."
+		 )
