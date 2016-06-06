@@ -7,9 +7,13 @@ block content
 		+breadcrumb("dubai_rs.html") Dubai
 		+breadcrumb() AL DIAR BARSHA HOTEL APARTMENT
 
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
 	#my-content
 
-	button.btn.btn-large.btn-success(id="testButton")
 	+details(
 		4, 
 		["../assets/img/al-diar-barsha-hotel-carousel-1.jpg", "../assets/img/al-diar-barsha-hotel-carousel-2.jpg", "../assets/img/al-diar-barsha-hotel-carousel-3.jpg"],
@@ -21,6 +25,8 @@ block content
 
 block scripts
 	script.
+		var opened = false;
+
 		$('#reserveButton').on('click', function(){
 			var date = new Date();
 			var minutes = 7*24*60;
@@ -35,34 +41,59 @@ block scripts
 				select_card : $('#select-card').val(),
 				card_num : $('#card-num').val()
 			}, { expires: date });
+
+			if (opened){
+				$('#my-content').empty();
+				opened = false;
+			}
 		});
 
-		$('#testButton').on('click', function(){
+		$('#showReservations').on('click', function(){
 			var jsonData = Cookies.getJSON();
 			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
 
 			$.each(jsonData, function(key, value) {
 			    console.log(key, value);
 
 			    if(value.name == "dubai-al-diar"){
-			    	alert(JSON.stringify(jsonData));
-			    	var dom = $('<div>').append($('<div>').attr('class', 'row panel panel-default')
-			    				.append($('<div>').attr('class', 'col-md-6')
-			    						.append($('<div>').text('Ime hotela'))
-			    						.append($('<div>').text('Datum polaska'))
-			    						.append($('<div>').text('Datum dolaska'))
-			    						.append($('<div>').text('Email'))
-			    						.append($('<div>').text('Broj ljudi'))
-			    						.append($('<div>').text('Kartica'))
-			    						.append($('<div>').text('Broj Kartice')))
-			    				.append($('<div>').attr('class', 'col-md-6')
-			    						.append($('<div>').text(value.name))
-			    						.append($('<div>').text(value.date_start))
-			    						.append($('<div>').text(value.date_end))
-			    						.append($('<div>').text(value.email))
-			    						.append($('<div>').text(value.person_num))
-			    						.append($('<div>').text(value.select_card))
-			    						.append($('<div>').text(value.card_num)))).html();
+			    	var dom = $('<div>').append($('<div>').attr('class', 'row')
+			    				.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Datum polaska')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.date_start))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Datum dolaska')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.date_end))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Email')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.email))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Broj ljudi')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.person_num))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Kartica')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.select_card))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Broj Kartice')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.card_num)))))).html();
 			    	console.log(dom);
 			    	html += dom + "\n";
 			    }
@@ -70,4 +101,5 @@ block scripts
 			});
 
 			$("#my-content").html(html);
+			opened = true;
 		});
