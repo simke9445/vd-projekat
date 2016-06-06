@@ -1,0 +1,76 @@
+extends layouts/layout_en
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_en.html") Home
+        +breadcrumb("new_year_2016_en.html") New Year's 2016
+        +breadcrumb() Dubai
+
+    +header("Available accommodation:")
+
+    .row
+        form
+            .form-group
+                .row
+                    .col-md-8.col-md-offset-2
+                        .col-md-4
+                            label.control-label.pull-right From
+                            input.form-control.text-align-right(type="text" id="starting-price" placeholder=0)
+                        .col-md-4
+                            a.btn.btn-primary.btn-block.search-margin(id="search") Search
+                        .col-md-4
+                            label.control-label.pull-left To
+                            input.form-control(type="text" id="ending-price" placeholder=0)
+
+    #main-content
+
+        +details_preview("../assets/img/dubai-hotel-grand-midwest.jpg", "GRAND MIDWEST EXPRESS HOTEL APARTMENTS", "Located in Discovery Garden of the city . Shopping center Ibn Battuta is a 10- minute walk from the hotel as well as metro station on the red line . Dubai Marina and Jumeirah Beach Residence complex is located about 3 km. By Economic Zone Dubai World Central can be reached in 30 minutes . Marina City Beach is located less than 10 minutes away by taxi , about 5km from the hotel ( around € 4-5 taxi )", "dubai-grand-midwest.html", 250, 500, "en")
+
+        +details_preview("../assets/img/al-diar-barsha-hotel.jpg", "AL DIAR BARSHA HOTEL APARTMENT", "The hotel is located in Al Barsha , 5 minutes walk from the Emirates mall .", "dubai-al-diar-balsha.html", 300, 500, "en")
+
+        +details_preview("../assets/img/skyline-deluxe-hotel.jpg", "SKYLINE DELUX HOTEL", "Located in Al Riqqa Street , the hotel is located near the Al Riqqa metro station ( about 5 minutes walk ) , 2 km from Deira City Centre and just 5 km from Dubai International Airport . Thanks to its location in Deira Maktoum Street, next to the Taj Palace Dubai Clock Tower, guests will have easy access to the city center, offices and shopping centers . Al Mamzar beach and Jumeira Public Beach are equally distant from the hotel (about 10km - about 8 € taxi). Burj Khalifa , Dubai Mall and Jumeirah Beach are about 15 minutes away .", "dubai-skyline-delux.html", 200, 1000, "en")
+
+        .row.text-center
+            .col-lg-12
+                ul.pagination
+                    li: a( href="#" ) &laquo;
+                    li.active: a( href="#" ) 1
+                    li: a( href="#" ) &raquo;
+
+block scripts
+    script.
+        $(document).ready(function(){
+            if(window.opener != null){
+                var doms = [];
+
+                $('div[name=price]', window.opener.document).each(function(){
+
+                    var starting_price = $(this).data('price-starting'),
+                        ending_price = $(this).data('price-ending'),
+                        current_price_starting = window.opener.$('#starting-price').val(),
+                        current_price_ending = window.opener.$('#ending-price').val();
+
+                    console.log(current_price_starting, current_price_ending, starting_price, ending_price);
+
+                    if(current_price_starting <= ending_price && current_price_ending >= starting_price && starting_price < ending_price){
+                        console.log( current_price_ending >= starting_price);
+                        var parent = $(this).closest('.my-test-preview');
+                        doms.push(parent);
+                    }
+                    
+                });
+
+                var main_content = "";
+                $(doms).each(function(){
+                    main_content += "<div class='my-test-preview'>" + $(this).html()  + "</div>";
+                });
+
+                console.log(main_content);
+
+                $('#main-content').html(main_content);
+            }
+        });
+
+        $('#search').on('click', function(){
+            window.open('dubai_en.html');
+        });

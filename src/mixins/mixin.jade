@@ -99,7 +99,7 @@ mixin thumb(href, title, src)
         h4.text-center= title
 
 //- Details preview mixin
-mixin details_preview(img_src, name, description, details ,starting_price, ending_price)
+mixin details_preview(img_src, name, description, details ,starting_price, ending_price, lang)
     .my-test-preview
         .row
             .col-md-5
@@ -110,10 +110,16 @@ mixin details_preview(img_src, name, description, details ,starting_price, endin
                 h3= name
                 h4 &#9733;&#9733;&#9733;
                 p= description
-                p Pogodnosti:
-                p Besplatan Wi-Fi / Dorucak / Bazen
-                a.btn.btn-primary( href=details ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
+                if lang === "en"
+                    p Included:
+                    p Free Wi-Fi / Breakfast / Pool
+                    a.btn.btn-primary( href=details ) More
+                        span.glyphicon.glyphicon-chevron-right
+                else
+                    p Pogodnosti:
+                    p Besplatan Wi-Fi / Dorucak / Bazen
+                    a.btn.btn-primary( href=details ) Detaljnije
+                        span.glyphicon.glyphicon-chevron-right
 
         hr
 
