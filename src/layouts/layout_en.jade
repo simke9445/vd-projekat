@@ -2,8 +2,11 @@ include ../mixins/mixin.jade
 
 doctype
 html( lang="en" )
+    block variables
+
     head
-        title Rista the Tourist
+        - var title = title + " - Rista the Tourista" || "Rista the Tourista"
+        title #{title}
         meta( charset='utf-8' )
         meta( http-equiv='X-UA-Compatible', content='IE=edge' )
         meta( name='viewport', content='width=device-width, initial-scale=1.0' )
