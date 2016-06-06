@@ -1,0 +1,23 @@
+extends layouts/layout_en
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_en.html") Home
+        +breadcrumb() Far destinations
+
+    +header("USA")
+        +thumb("new_york_en.html", "New York", "../assets/img/new_york.jpg")
+        +thumb("#", "San Francisco", "../assets/img/san_francisco.jpg")
+        +thumb("#", "Seattle", "../assets/img/seattle.jpg")
+        +thumb("#", "Honolulu", "../assets/img/honolulu.jpg")
+
+    +header("Japan")
+        +thumb("#", "Tokyo", "../assets/img/tokyo.jpg")
+        +thumb("#", "Kyoto", "../assets/img/kyoto.jpg")
+        +thumb("#", "Osaka", "../assets/img/osaka.jpg")
+        +thumb("#", "Hiroshima", "../assets/img/hiroshima.jpg")
+
+    +header("Australia")
+        +thumb("#", "Sydney", "../assets/img/sydney.jpg")
+        +thumb("#", "Melbourne", "../assets/img/melbourne.jpg")
+        +thumb("#", "Brisbane", "../assets/img/brisbane.jpg")

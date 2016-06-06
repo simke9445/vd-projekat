@@ -1,0 +1,17 @@
+extends layouts/layout_en
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_en.html") Home
+        +breadcrumb() New Year's 2016
+    
+    +header("Trending destinations")
+        +thumb("dubai_en.html", "Dubai", "../assets/img/dubai.jpg")
+        +thumb("#", "Prague", "../assets/img/prague.jpg")
+        +thumb("#", "Paris", "../assets/img/paris.jpg")
+        +thumb("#", "Moscow", "../assets/img/moscow.jpg")
+        +thumb("#", "Budapest", "../assets/img/budapest.jpg")
+        +thumb("#", "Amsterdam", "../assets/img/amsterdam.jpg")
+        +thumb("#", "Reykjavik", "../assets/img/reykjavik.jpg")
+        +thumb("#", "Osaka", "../assets/img/osaka.jpg")
+        +thumb("#", "Liverpool", "../assets/img/liverpool.jpg")

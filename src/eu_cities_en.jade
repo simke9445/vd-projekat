@@ -1,0 +1,23 @@
+extends layouts/layout_en
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_en.html") Home
+        +breadcrumb() European cities
+
+    +header("Germany")
+        +thumb("munich_en.html", "Munich", "../assets/img/munich.jpg")
+        +thumb("#", "Berlin", "../assets/img/berlin.jpg")
+        +thumb("#", "Cologne", "../assets/img/cologne.jpg")
+        +thumb("#", "Frankfurt", "../assets/img/frankfurt.jpg")
+
+    +header("England")
+        +thumb("#", "London", "../assets/img/london.jpg")
+        +thumb("#", "Manchester", "../assets/img/manchester.jpg")
+        +thumb("#", "Cambridge", "../assets/img/cambridge.jpg")
+        +thumb("#", "Liverpool", "../assets/img/liverpool.jpg")
+
+    +header("Italy")
+        +thumb("#", "Rome", "../assets/img/rome.jpg")
+        +thumb("#", "Venice", "../assets/img/venice.jpg")
+        +thumb("#", "Florence", "../assets/img/florence.jpg")

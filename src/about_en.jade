@@ -1,23 +1,23 @@
-extends layouts/layout_rs
+extends layouts/layout_en
 
 block content
     +breadcrumbs()
-        +breadcrumb("index_rs.html") Pocetna
-        +breadcrumb() O nama
+        +breadcrumb("index_en.html") Home
+        +breadcrumb() About us
 
 
-    +header("Ko smo mi?")
+    +header("Who are we?")
         p( style="margin: 10px" ) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis. Maecenas facilisis tincidunt odio in molestie. Sed feugiat lorem enim, non dignissim dolor consequat ac. Integer elementum lorem sit amet tortor faucibus, sed porta urna cursus. Phasellus aliquam nulla vel vestibulum sodales. Integer pretium urna vitae metus gravida, sed suscipit quam vulputate.<br/><br/>Nunc a neque ipsum. Donec eget elit sit amet nulla pretium suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc mattis, sem lobortis sagittis luctus, ante sem mollis tellus, nec porta ligula odio eu ex. Aenean lectus massa, ullamcorper quis eros a, egestas congue diam. Praesent elementum sollicitudin arcu vitae varius. Morbi tincidunt ac felis id fermentum. Suspendisse vitae quam sodales, porttitor diam non, posuere mi. Aenean laoreet quam non malesuada eleifend. Donec lacinia non leo et euismod. In sagittis tortor vel diam ornare condimentum.
 
 
-    +header("Kontaktirajte nas")
+    +header("Contact us")
         .col-lg-6
             form
                 .form-group
                     .row
-                        input.form-control(placeholder="naslov")
+                        input.form-control(placeholder="title")
                     .row.top-padded-xs
                         textarea.form-control.top-padded-xs( rows="5" )
                 .form-group
                     .row
-                        +button("primary", "#") Posalji
+                        +button("primary", "#") Send

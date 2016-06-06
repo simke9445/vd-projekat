@@ -1,0 +1,47 @@
+extends layouts/layout_en
+
+block content
+    .jumbotron
+        .row
+            h2 Find your dream vacation!
+            .col-md-6.text-left
+                form.top-padded
+                    .row
+                        .form-group
+                            .col-md-3
+                                label.control-label.vertical-center Destination
+                            .col-md-6
+                                input.form-control.pull-left( type="text" placeholder="name of the place" )
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3.text-left
+                                label.control-label.vertical-center No. of travelers
+                            .col-md-6
+                                select.form-control
+                                    option 1
+                                    option( selected ) 2
+                                    option 3+
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3
+                                .btn.btn-primary.btn-block(type="submit") Search
+            .col-md-6.text-left
+                form.top-padded
+                    .row
+                        .form-group
+                            .col-md-3
+                                label.control-label.vertical-center Start
+                            .col-md-6
+                                input.form-control.pull-left( type="date" )
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3.text-left
+                                label.control-label.vertical-center End
+                            .col-md-6
+                                input.form-control.pull-left( type="date" )
+
+    +header("Favourite offers")
+        +thumb("thassos_en.html", "Thassos / Summer 2016", "../assets/img/thassos.jpg")
+        +thumb("munich_en.html", "Munich / European cities", "../assets/img/munich.jpg")
+        +thumb("dubai_en.html", "Dubai / New Year's 2016", "../assets/img/dubai.jpg")
+        +thumb("new_york_en.html", "New York / Far destinations", "../assets/img/new_york.jpg")

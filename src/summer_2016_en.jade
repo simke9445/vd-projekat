@@ -1,0 +1,23 @@
+extends layouts/layout_en
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_en.html") Home
+        +breadcrumb() Summer 2016
+
+    +header("Greece")
+        +thumb("thassos_en.html", "Thassos", "../assets/img/thassos.jpg")
+        +thumb("#", "Sarti", "../assets/img/sarti.jpg")
+        +thumb("#", "Neos Marmaras", "../assets/img/neos_marmaras.jpg")
+        +thumb("#", "Polychrono", "../assets/img/polychrono.jpg")
+
+    +header("Montenegro")
+        +thumb("#", "Herceg Novi", "../assets/img/herceg_novi.jpg")
+        +thumb("#", "Budva", "../assets/img/budva.jpg")
+        +thumb("#", "Bar", "../assets/img/bar.jpg")
+        +thumb("#", "Ulcinj", "../assets/img/ulcinj.jpg")
+
+    +header("Italy")
+        +thumb("#", "Lido di Jesolo", "../assets/img/lido_di_jesolo.jpg")
+        +thumb("#", "Rimini", "../assets/img/rimini.jpg")
+        +thumb("#", "Sicily", "../assets/img/sicily.jpg")
