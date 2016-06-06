@@ -7,6 +7,13 @@ block content
 		+breadcrumb("thassos_rs.html") Tasos
 		+breadcrumb() VILA MIRANDA - POTOS
 
+	.row
+		.col-md-6.col-md-offset-3
+			button.btn.btn-large.btn-block.btn-success(id="showReservations") Prikazi Rezervacije za trenutnu destinaciju
+	.row.top-padded
+
+	#my-content
+
 	+details(
 		3, 
 		["http://placehold.it/800x600", "http://placehold.it/800x600"],
@@ -15,3 +22,85 @@ block content
 		 "Smešteni su na drugom spratu: soba sa dva standardna ležaja, kuhinjski deo (frižider, rešo sa dve ringle, aspirator, električni bokal, posuđe za odgovarajući broj osoba), TV, sef, kupatilo - tuš/wc i terasa.",
 		 "Apartman 03 / 04: klima (uključena u cenu), smešteni su na prvom i drugom spratu: apartman se sastoji od dve prostorije koje su odvojene lučnim prolazom (nisu odvojene vratima). U jednoj prostoriji - sobi je francuski krevet, TV i izlaz na terasu, a u drugoj su dva standardna ležaja, kuhinjski deo (frižider, rešo sa dve ringle, aspirator, električni bokal, posuđe za odgovarajući broj osoba), sef, kupatilo - tuš/wc i terasa."
 		 )
+
+
+block scripts
+	script.
+		var opened = false;
+
+		$('#reserveButton').on('click', function(){
+			var date = new Date();
+			var minutes = 7*24*60;
+			date.setTime(date.getTime() + (minutes * 60 * 1000));
+
+			Cookies.set("thassos_miranda" + date + date.getMilliseconds(), {
+				name: 'thassos_miranda',
+				date_start: $('#date-start').val(),
+				date_end : $('#date-end').val(),
+				email : $('#email').val(),
+				person_num : $('#person-num').val(),
+				select_card : $('#select-card').val(),
+				card_num : $('#card-num').val()
+			}, { expires: date });
+
+			if (opened){
+				$('#my-content').empty();
+				opened = false;
+			}
+		});
+
+		$('#showReservations').on('click', function(){
+			var jsonData = Cookies.getJSON();
+			var html = "";
+
+			if(opened){
+				$('#my-content').empty();
+				opened = false;
+				return;
+			}
+
+			$.each(jsonData, function(key, value) {
+			    console.log(key, value);
+
+			    if(value.name == "thassos_miranda"){
+			    	var dom = $('<div>').append($('<div>').attr('class', 'row')
+			    				.append($('<div>').attr('class', 'col-md-6 col-md-offset-3 panel panel-default')
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Datum polaska')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.date_start))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Datum dolaska')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.date_end))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Email')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.email))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Broj ljudi')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.person_num))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Kartica')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.select_card))))
+					    				.append($('<div>').attr('class', 'row')
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<label>').text('Broj Kartice')))
+					    						.append($('<div>').attr('class', 'col-md-6 text-center')
+					    							.append($('<div>').text(value.card_num)))))).html();
+			    	console.log(dom);
+			    	html += dom + "\n";
+			    }
+
+			});
+
+			$("#my-content").html(html);
+			opened = true;
+		});

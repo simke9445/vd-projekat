@@ -7,6 +7,23 @@ block content
         +breadcrumb() Tasos
 
     +header("Izaberite smestaj:")
+
+    .row
+        form
+            .form-group
+                .row
+                    .col-md-8.col-md-offset-2
+                        .col-md-4
+                            label.control-label.pull-right Pocetna cena
+                            input.form-control.text-align-right(type="text" id="starting-price" placeholder=0)
+                        .col-md-4
+                            a.btn.btn-primary.btn-block.search-margin(id="search") Pretrazi
+                        .col-md-4
+                            label.control-label.pull-left Zavrsna cena
+                            input.form-control(type="text" id="ending-price" placeholder=0)
+
+    #main-content
+
         +details_preview("../assets/img/tasos-irini.jpg", "VILA IRINI - POTOS", "Apartmanska dvospratna zgrada sa prostranim studijima i apartmanima. Poseduje bazen, koji deli sa hotelom Potos. Korišćenje bazena je slobodno za goste apartmana, ukoliko se konzumira neko od pića ili kafa iz bara kraj bazena. Svi apartmani i studija su okrenuti prema mirnoj sporednoj ulici, imaju prostranu terasu sa garniturom za sedenje i obedovanje.", "thassos_irini_rs.html", 50, 600)
 
         +details_preview("../assets/img/thassos_toula_1.jpg", "VILA TOULA - POTOS", "U centru Potosa, prelepa moderna apartmanska dvospratna zgrada sa studijima i apartmanima. Svi apartmani imaju terasu sa garniturom za sedenje i obedovanje.", "thassos_toula_rs.html", 150, 400)
@@ -21,3 +38,41 @@ block content
                     li: a( href="#" ) &laquo;
                     li.active: a( href="#" ) 1
                     li: a( href="#" ) &raquo;
+
+block scripts
+    script.
+        $(document).ready(function(){
+            if(window.opener != null){
+                var doms = [];
+
+                $('div[name=price]', window.opener.document).each(function(){
+
+                    var starting_price = $(this).data('price-starting'),
+                        ending_price = $(this).data('price-ending'),
+                        current_price_starting = window.opener.$('#starting-price').val(),
+                        current_price_ending = window.opener.$('#ending-price').val();
+
+                    console.log(current_price_starting, current_price_ending, starting_price, ending_price);
+
+                    if(current_price_starting <= ending_price && current_price_ending >= starting_price && starting_price < ending_price){
+                        console.log( current_price_ending >= starting_price);
+                        var parent = $(this).closest('.my-test-preview');
+                        doms.push(parent);
+                    }
+                    
+                });
+
+                var main_content = "";
+                $(doms).each(function(){
+                    main_content += "<div class='my-test-preview'>" + $(this).html()  + "</div>";
+                });
+
+                console.log(main_content);
+
+                $('#main-content').html(main_content);
+            }
+        });
+
+        $('#search').on('click', function(){
+            window.open('thassos_rs.html');
+        });

@@ -7,6 +7,23 @@ block content
         +breadcrumb() Njujork
 
     +header("Izaberite smestaj:")
+
+    .row
+        form
+            .form-group
+                .row
+                    .col-md-8.col-md-offset-2
+                        .col-md-4
+                            label.control-label.pull-right Pocetna cena
+                            input.form-control.text-align-right(type="text" id="starting-price" placeholder=0)
+                        .col-md-4
+                            a.btn.btn-primary.btn-block.search-margin(id="search") Pretrazi
+                        .col-md-4
+                            label.control-label.pull-left Zavrsna cena
+                            input.form-control(type="text" id="ending-price" placeholder=0)
+
+    #main-content
+
         +details_preview("../assets/img/new_york_times_square_1.jpg", "AKA Times Square", "Smešten u Njujorku, ovaj objekat je udaljen 1 blok od Tajms Skvera. U ponudi su smeštajne jedinice sa kompletno opremljenom kuhinjom i odvojenim dnevnim boravkom u kojem se nalazi flat-screen TV.", "new_york_times_square.html", 500, 700)
 
         +details_preview("../assets/img/new_york_marriott_1.jpg", "New York Marriott Marquis", "Smešten u pozorišnoj oblasti Brodvej, ovaj hotel sa 4 zvezdice nalazi se na samom Tajms skveru. U ponudi ima 3 mesta za jelo, uključujući rotirajući krovni restoran.", "new_york_marriott.html", 50, 600)
@@ -31,3 +48,41 @@ block content
                     li: a( href="#" ) 2
                     li: a( href="#" ) 3
                     li: a( href="#" ) &raquo;
+
+block scripts
+    script.
+        $(document).ready(function(){
+            if(window.opener != null){
+                var doms = [];
+
+                $('div[name=price]', window.opener.document).each(function(){
+
+                    var starting_price = $(this).data('price-starting'),
+                        ending_price = $(this).data('price-ending'),
+                        current_price_starting = window.opener.$('#starting-price').val(),
+                        current_price_ending = window.opener.$('#ending-price').val();
+
+                    console.log(current_price_starting, current_price_ending, starting_price, ending_price);
+
+                    if(current_price_starting <= ending_price && current_price_ending >= starting_price && starting_price < ending_price){
+                        console.log( current_price_ending >= starting_price);
+                        var parent = $(this).closest('.my-test-preview');
+                        doms.push(parent);
+                    }
+                    
+                });
+
+                var main_content = "";
+                $(doms).each(function(){
+                    main_content += "<div class='my-test-preview'>" + $(this).html()  + "</div>";
+                });
+
+                console.log(main_content);
+
+                $('#main-content').html(main_content);
+            }
+        });
+
+        $('#search').on('click', function(){
+            window.open('new_york_rs.html');
+        });

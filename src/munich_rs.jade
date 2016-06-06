@@ -7,6 +7,23 @@ block content
         +breadcrumb() Minhen
 
     +header("Izaberite smestaj:")
+
+    .row
+        form
+            .form-group
+                .row
+                    .col-md-8.col-md-offset-2
+                        .col-md-4
+                            label.control-label.pull-right Pocetna cena
+                            input.form-control.text-align-right(type="text" id="starting-price" placeholder=0)
+                        .col-md-4
+                            a.btn.btn-primary.btn-block.search-margin(id="search") Pretrazi
+                        .col-md-4
+                            label.control-label.pull-left Zavrsna cena
+                            input.form-control(type="text" id="ending-price" placeholder=0)
+
+    #main-content
+
         +details_preview("../assets/img/munich_kempinski_1.jpg", "Vier Jahreszeiten Kempinski München", "Ovaj hotel sa 5 zvezdica poseduje elegantan spa centar sa bazenom i nudi panoramski pogled na grad. Smešten je u centru Minhena, na 5 minuta hoda od Trga Marijenplac.", "munich_kempinski.html", 50, 600)
 
         +details_preview("../assets/img/munich_konigshof_1.jpg", "Hotel Königshof", "Smešten na samom trgu Karlsplac u srcu Minhena, ovaj hotel sa 5 zvezdica nudi nagrađivani restoran Königshof. Elegantne, zvučno izolovane sobe i apartmani tipa \"suite\" imaju besplatan bežični...", "munich_konigshof.html", 50, 600)
@@ -31,3 +48,41 @@ block content
                     li: a( href="#" ) 2
                     li: a( href="#" ) 3
                     li: a( href="#" ) &raquo;
+
+block scripts
+    script.
+        $(document).ready(function(){
+            if(window.opener != null){
+                var doms = [];
+
+                $('div[name=price]', window.opener.document).each(function(){
+
+                    var starting_price = $(this).data('price-starting'),
+                        ending_price = $(this).data('price-ending'),
+                        current_price_starting = window.opener.$('#starting-price').val(),
+                        current_price_ending = window.opener.$('#ending-price').val();
+
+                    console.log(current_price_starting, current_price_ending, starting_price, ending_price);
+
+                    if(current_price_starting <= ending_price && current_price_ending >= starting_price && starting_price < ending_price){
+                        console.log( current_price_ending >= starting_price);
+                        var parent = $(this).closest('.my-test-preview');
+                        doms.push(parent);
+                    }
+                    
+                });
+
+                var main_content = "";
+                $(doms).each(function(){
+                    main_content += "<div class='my-test-preview'>" + $(this).html()  + "</div>";
+                });
+
+                console.log(main_content);
+
+                $('#main-content').html(main_content);
+            }
+        });
+
+        $('#search').on('click', function(){
+            window.open('munich_rs.html');
+        });
