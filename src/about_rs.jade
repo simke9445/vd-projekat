@@ -6,19 +6,12 @@ block content
         +breadcrumb() O nama
 
 
-    .row
-        .col-lg-12
-            h1.page-header Ko smo mi?
-
-    p Lorem ipsum i ta cuda.
+    +header("Ko smo mi?")
+        p( style="margin: 10px" ) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis. Maecenas facilisis tincidunt odio in molestie. Sed feugiat lorem enim, non dignissim dolor consequat ac. Integer elementum lorem sit amet tortor faucibus, sed porta urna cursus. Phasellus aliquam nulla vel vestibulum sodales. Integer pretium urna vitae metus gravida, sed suscipit quam vulputate.<br/><br/>Nunc a neque ipsum. Donec eget elit sit amet nulla pretium suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc mattis, sem lobortis sagittis luctus, ante sem mollis tellus, nec porta ligula odio eu ex. Aenean lectus massa, ullamcorper quis eros a, egestas congue diam. Praesent elementum sollicitudin arcu vitae varius. Morbi tincidunt ac felis id fermentum. Suspendisse vitae quam sodales, porttitor diam non, posuere mi. Aenean laoreet quam non malesuada eleifend. Donec lacinia non leo et euismod. In sagittis tortor vel diam ornare condimentum.
 
 
-    .row
-        .col-lg-12
-            h1.page-header Kontakt
-
-    .row
-        .col-lg-12
+    +header("Kontakt")
+        .col-lg-6
             form
                 input.form-control(placeholder="naslov")
                 textarea.form-control( rows="5" )

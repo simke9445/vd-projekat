@@ -1,0 +1,95 @@
+extends layouts/layout_rs
+
+block content
+    +breadcrumbs()
+        +breadcrumb("index_rs.html") Pocetna
+        +breadcrumb("far_dest_rs.html") Daleke destinacije
+        +breadcrumb() Njujork
+
+    +header("Izaberite smestaj:")
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Apartman A
+                h4 &#9733;&#9733;&#9733;
+                p Lokacija: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Hotel A
+                h4 &#9733;&#9733;
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+            
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Apartman B
+                h4 &#9733;&#9733;&#9733;&#9733;
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Apartman C
+                h4 &#9733;&#9733;&#9733;
+                p Lokacija: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Hotel B
+                h4 &#9733;&#9733;
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+            
+        .row
+            .col-md-5
+                a( href="#" )
+                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
+            .col-md-7
+                h3 Apartman D
+                h4 &#9733;&#9733;&#9733;&#9733;
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
+                a.btn.btn-primary( href="#" ) Detaljnije
+                    span.glyphicon.glyphicon-chevron-right
+
+        hr
+
+        .row.text-center
+            .col-lg-12
+                ul.pagination
+                    li: a( href="#" ) &laquo;
+                    li.active: a( href="#" ) 1
+                    li: a( href="#" ) 2
+                    li: a( href="#" ) 3
+                    li: a( href="#" ) &raquo;

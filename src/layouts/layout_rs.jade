@@ -12,22 +12,24 @@ html( lang="en" )
         link( rel="stylesheet" type="text/css" href="../assets/css/main.css" )
     body
         .container
-            div
-                img( src="../assets/img/pano.jpg" style="width: 100%;" )
-            +nav("Rista Turista", "navbar")
-                +nav_item( "index_rs.html" ) Pocetna
-                +nav_item( "about_rs.html" ) O nama
-                +nav_item( "summer_2016_rs.html" ) Leto 2016
-                +nav_item( "eu_cities_rs.html" ) Evropski gradovi
-                +nav_item( "far_dest_rs.html" ) Daleke destinacije
-                +nav_item( "new_year_2016_rs.html" ) Nova godina 2016
+            header
+                div
+                    img( src="../assets/img/pano.jpg" style="width: 100%;" )
+                +nav("Rista Turista", "navbar")
+                    +nav_item( "index_rs.html" ) Pocetna
+                    +nav_item( "about_rs.html" ) O nama
+                    +nav_item( "summer_2016_rs.html" ) Leto 2016
+                    +nav_item( "eu_cities_rs.html" ) Evropski gradovi
+                    +nav_item( "far_dest_rs.html" ) Daleke destinacije
+                    +nav_item( "new_year_2016_rs.html" ) Nova godina 2016
 
             block content
             
             footer
                 .row
                     .col-lg-12
-                        p Copyright &copy; Krcko Orascic 2020            
+                        .pull-right
+                            p Copyright &copy; 2016, Djordje Simovic, Aleksa Pavlovic, Odsek za softversko inzenjerstvo Elektrotehnickog fakulteta Univerziteta u Beogradu            
 
         script( src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
         script( src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
