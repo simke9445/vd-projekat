@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() AL DIAR BARSHA HOTEL APARTMENT
+
+	+details(
+		4, 
+		["../assets/img/al-diar-barsha-hotel-carousel-1.jpg", "../assets/img/al-diar-barsha-hotel-carousel-2.jpg", "../assets/img/al-diar-barsha-hotel-carousel-3.jpg"],
+		 "../assets/img/al-diar-barsha-hotel.jpg",
+		 "Hotel se nalazi u Al Barshi, 5 minuta hoda od Emirates mall-a.",
+		 " estoran, recepcija radi non-stop, dnevna štampa, sobe za nepušače, porodične sobe, lift, ekspresno prijavljivanje i odjavljivanje, sef, ostava za prtljag, klima, fitness centar, otvoreni bazen. U hotelu postoji usluga pranja vesa, hemijsko, čišćenje, doručak u sobi, usluga peglanja, menjačnica, faks/fotokopiranje",
+		 "Hotel nudi jednokrevetne i dvokrevetne apartmane, sa velikim dnevnim boravkom sa SAT TV, opremljenom kuhinjom i modernim kupatilom Usluga: Noćenje sa doručkom"
+		 )

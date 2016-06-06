@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("summer_2016_rs.html") Leto 2016
+		+breadcrumb("thassos_rs.html") Tasos
+		+breadcrumb() VILA IRINI - POTOS
+
+	+details(
+		3, 
+		["../assets/img/tasos-irini-carousel-1.jpg", "../assets/img/tasos-irini-carousel-2.jpg"],
+		 "../assets/img/tasos-irini.jpg",
+		 " Studio 02: klima (uključena u cenu), smešteni su na drugom spratu: soba sa dva standardna ležaja, kuhinjski deo (frižider, rešo sa dve ringle, aspirator, električni bokal, posuđe za odgovarajući broj osoba), TV, sef, kupatilo - tuš/wc i terasa.",
+		 "Smešteni su na drugom spratu: soba sa dva standardna ležaja, kuhinjski deo (frižider, rešo sa dve ringle, aspirator, električni bokal, posuđe za odgovarajući broj osoba), TV, sef, kupatilo - tuš/wc i terasa.",
+		 "Apartman 03 / 04: klima (uključena u cenu), smešteni su na prvom i drugom spratu: apartman se sastoji od dve prostorije koje su odvojene lučnim prolazom (nisu odvojene vratima). U jednoj prostoriji - sobi je francuski krevet, TV i izlaz na terasu, a u drugoj su dva standardna ležaja, kuhinjski deo (frižider, rešo sa dve ringle, aspirator, električni bokal, posuđe za odgovarajući broj osoba), sef, kupatilo - tuš/wc i terasa."
+		 )

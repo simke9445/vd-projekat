@@ -2,7 +2,7 @@ extends layouts/layout_rs
 
 block content
     +breadcrumbs()
-        +breadcrumb("index.html") Pocetna
+        +breadcrumb("index_rs.html") Pocetna
         +breadcrumb() O nama
 
 
@@ -13,6 +13,11 @@ block content
     +header("Kontakt")
         .col-lg-6
             form
-                input.form-control(placeholder="naslov")
-                textarea.form-control( rows="5" )
-                +button("primary", "#") Posalji
+                .form-group
+                    .row
+                        input.form-control(placeholder="naslov")
+                    .row.top-padded-xs
+                        textarea.form-control.top-padded-xs( rows="5" )
+                .form-group
+                    .row
+                        +button("primary", "#") Posalji

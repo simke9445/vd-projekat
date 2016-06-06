@@ -2,12 +2,26 @@ extends layouts/layout_rs
 
 block content
     .jumbotron
-        h2 Pronadjite svoj idealni predah!
-        p Polazak:
-            input( type="date" )
-        p Povratak:
-            input( type="date" )
-        p: +button("primary", "more.htm") Trazi
+        .row
+            h2 Pronadjite svoj idealni predah!
+            .col-md-6.text-left
+                form.top-padded
+                    .row
+                        .form-group
+                            .col-md-3
+                                label.control-label.vertical-center Polazak
+                            .col-md-6
+                                input.form-control.pull-left( type="date" )
+                    .row.top-padded-xs
+                        .form-group
+                            .col-md-3.text-left
+                                label.control-label.vertical-center Povratak
+                            .col-md-6
+                                input.form-control.pull-left( type="date" )
+                    .row
+                        .form-group
+                            .col-md-3
+                                .btn.btn-primary.btn-block(type="submit") Trazi
 
     +header("Najaktuelnije ponude")
         +thumb("thassos_rs.html", "Tasos / Leto 2016", "../assets/img/thassos.jpg")

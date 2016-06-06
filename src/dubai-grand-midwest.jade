@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() GRAND MIDWEST EXPRESS HOTEL APARTMENTS
+
+	+details(
+		3, 
+		["http://placehold.it/500x300", "http://placehold.it/500x300", "http://placehold.it/500x300"],
+		 "http://placehold.it/500x300",
+		 "Smešten u Discovery Garden delu grada. Tržni centar Ibn Battuta nalazi se na 10 minuta hoda od hotela kao i stanice metroa na crvenoj liniji. Dubai Marina i kompleks Jumeirah beach Residence udaljeni su oko 3 km. Do ekonomske zone Dubai World Central može se stići za 30 minuta vožnje. Marina gradska Plaža se nalazi manje od 10 minuta vožnje taksijem, oko 5km od hotela (oko 4-5€ taksijem)",
+		 "Sobe u hotelu imaju moderan enterijer i dele se na Studio standard (oko 45m2), Studio Deluxe (oko 45m2), One Bedroom Deluxe (oko 95m2). Sve smeštajne jedinice imaju terasu, kuhinju, klimu, kablovsku TV, internet (Wi-Fi i kablovski), fen, sef, peglu i dasku za peglanje i mašinu za pranje veša.",
+		 " Na 6. spratu objekta nalazi se potpuno opremljena teretana, a u nivou lobija poslovni centar. Svi gosti objekta Grand Midwest mogu koristiti garažu u podrumu. U kafeu objekta Grand Midwest u prizemlju služi se doručak na bazi švedskog stola"
+		 )

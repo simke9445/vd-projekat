@@ -7,89 +7,17 @@ block content
         +breadcrumb() Tasos
 
     +header("Izaberite smestaj:")
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman A
-                h4 &#9733;&#9733;&#9733;
-                p Lokacija:<br/>Apartman je udaljen 150m od plaze. U blizini se nalazi supermarket Lidl.<br/><br/>Pogodnosti:<br/>Besplatan Wi-Fi / Dorucak / Bazen
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
+        +details_preview("../assets/img/tasos-irini.jpg", "VILA IRINI - POTOS", "Apartmanska dvospratna zgrada sa prostranim studijima i apartmanima. Poseduje bazen, koji deli sa hotelom Potos. Korišćenje bazena je slobodno za goste apartmana, ukoliko se konzumira neko od pića ili kafa iz bara kraj bazena. Svi apartmani i studija su okrenuti prema mirnoj sporednoj ulici, imaju prostranu terasu sa garniturom za sedenje i obedovanje.", "thassos-irini.html", 50, 600)
 
-        hr
+        +details_preview("http://placehold.it/500x300", "Apartman B", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.", "#", 50, 600)
 
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Hotel A
-                h4 &#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
+        +details_preview("http://placehold.it/500x300", "Apartman C", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.", "#", 50, 600)
 
-        hr
-            
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman B
-                h4 &#9733;&#9733;&#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
-
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman C
-                h4 &#9733;&#9733;&#9733;
-                p Lokacija: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
-
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Hotel B
-                h4 &#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
-            
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman D
-                h4 &#9733;&#9733;&#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
+        
 
         .row.text-center
             .col-lg-12
                 ul.pagination
                     li: a( href="#" ) &laquo;
                     li.active: a( href="#" ) 1
-                    li: a( href="#" ) 2
-                    li: a( href="#" ) 3
                     li: a( href="#" ) &raquo;

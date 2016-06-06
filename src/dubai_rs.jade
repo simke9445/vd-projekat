@@ -7,89 +7,64 @@ block content
         +breadcrumb() Dubai
 
     +header("Izaberite smestaj:")
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman A
-                h4 &#9733;&#9733;&#9733;
-                p Lokacija: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
 
-        hr
+        #main-content
+            .row
+                form
+                    .form-group
+                        .row
+                            .col-md-8.col-md-offset-2
+                                .col-md-4
+                                    label.control-label.pull-right Pocetna cena
+                                    input.form-control.text-align-right(type="text" id="starting-price" placeholder=0)
+                                .col-md-4
+                                    a.btn.btn-primary.btn-block.search-margin(id="search") Pretrazi
+                                .col-md-4
+                                    label.control-label.pull-left Zavrsna cena
+                                    input.form-control(type="text" id="ending-price" placeholder=0)
 
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Hotel A
-                h4 &#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
+            +details_preview("../assets/img/dubai-hotel-grand-midwest.jpg", "GRAND MIDWEST EXPRESS HOTEL APARTMENTS", "Smešten u Discovery Garden delu grada. Tržni centar Ibn Battuta nalazi se na 10 minuta hoda od hotela kao i stanice metroa na crvenoj liniji. Dubai Marina i kompleks Jumeirah beach Residence udaljeni su oko 3 km. Do ekonomske zone Dubai World Central može se stići za 30 minuta vožnje. Marina gradska Plaža se nalazi manje od 10 minuta vožnje taksijem, oko 5km od hotela (oko 4-5€ taksijem)", "dubai-grand-midwest.html", 250, 500)
 
-        hr
-            
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman B
-                h4 &#9733;&#9733;&#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
+            +details_preview("../assets/img/al-diar-barsha-hotel.jpg", "AL DIAR BARSHA HOTEL APARTMENT", "Hotel se nalazi u Al Barshi, 5 minuta hoda od Emirates mall-a.", "dubai-al-diar-balsha.html", 300, 500)
 
-        hr
-
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman C
-                h4 &#9733;&#9733;&#9733;
-                p Lokacija: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
-
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Hotel B
-                h4 &#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
-            
-        .row
-            .col-md-5
-                a( href="#" )
-                    img.img-responsive( src="http://placehold.it/500x300" alt="" )
-            .col-md-7
-                h3 Apartman D
-                h4 &#9733;&#9733;&#9733;&#9733;
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum. Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.
-                a.btn.btn-primary( href="#" ) Detaljnije
-                    span.glyphicon.glyphicon-chevron-right
-
-        hr
+            +details_preview("../assets/img/skyline-deluxe-hotel.jpg", "SKYLINE DELUX HOTEL", "Smešten u Al Rikka ulici, ovaj hotel se nalazi u blizini Al Rikka metro stanice (oko 5 minuta hoda), 2km od Deira City Centra i samo 5 km od međunarodnog aerodroma Dubai. Zahvaljujući svojoj lokaciji u Deira Maktum ulici, pored Taj Palace i Dubai Clock Tower, gosti će imati lak pristup centru grada, poslovnim prostorima i tržnim centrima. Plaže Al Mamzar i Jumeira Public Beach su podjednako udaljene od hotela (oko 10km – oko 8€ taksijem). Burj Kalifa, Dubai Mall i Jumeirah plaža nalaze se na oko 15 minuta vožnje.", "dubai-skyline-delux.html", 200, 1000)
 
         .row.text-center
             .col-lg-12
                 ul.pagination
                     li: a( href="#" ) &laquo;
                     li.active: a( href="#" ) 1
-                    li: a( href="#" ) 2
-                    li: a( href="#" ) 3
                     li: a( href="#" ) &raquo;
+
+block scripts
+    script.
+        $(document).ready(function(){
+            if(window.opener != null){
+                var doms = [];
+
+                $('div[name=price]', window.opener.document).each(function(){
+
+                    var starting_price = window.opener.$('#starting-price').val(),
+                        ending_price = window.opener.$('#ending-price').val(),
+                        current_price_starting = $(this).data('price-starting'),
+                        current_price_ending = $(this).data('price-ending');
+
+                    if(current_price_starting <= ending_price && current_price_ending >= starting_price && starting_price < ending_price){
+                        var parent = $(this).closest('.my-test-preview');
+                        doms.push(parent);
+                    }
+                    
+                });
+
+                var main_content = "";
+                $(doms).each(function(){
+                    main_content += $(this).html();
+                });
+
+                $('#main-content').html(main_content);
+            }
+        });
+
+        $('#search').on('click', function(){
+            window.open('dubai_rs.html');
+        });

@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() SKYLINE DELUX HOTEL
+
+	+details(
+		4, 
+		["../assets/img/skyline-deluxe-hotel-carousel-1.jpg", "../assets/img/skyline-deluxe-hotel-carousel-2.jpg", "../assets/img/skyline-deluxe-hotel-carousel-3.jpg"],
+		 "../assets/img/skyline-deluxe-hotel.jpg",
+		 "Smešten u Al Rikka ulici, ovaj hotel se nalazi u blizini Al Rikka metro stanice (oko 5 minuta hoda), 2km od Deira City Centra i samo 5 km od međunarodnog aerodroma Dubai. Zahvaljujući svojoj lokaciji u Deira Maktum ulici, pored Taj Palace i Dubai Clock Tower, gosti će imati lak pristup centru grada, poslovnim prostorima i tržnim centrima. Plaže Al Mamzar i Jumeira Public Beach su podjednako udaljene od hotela (oko 10km – oko 8€ taksijem). Burj Kalifa, Dubai Mall i Jumeirah plaža nalaze se na oko 15 minuta vožnje.",
+		 "U toplom ambijentu, udobnom smeštaju i sa kvalitetnom uslugom, Skyline Deluxe Hotel Apartments je idealno mesto za sve vrste putnika. Skyline hotel Dubai nudi Vam 1 restoran, bazen na krovu hotela, kao i bogat spa i fitnes centar. Sadržaji: prevoz od/do aerodroma, salon lepote, kafić, iznajmljivanje automobila, menjačnica, doktor na poziv, usluge vešeraja, lift, porodične sobe, fitnes centar, zdravstveni klub, masaža, spoljni bazen, sauna, sap, dnevne novine, sef, lobi, obezbeđenje, parking, nepušačke sobe, čistač cipela.",
+		 "Hotel broji 91 sobu. Sve jedinice su ukusno uređene i opremljene modernim sadržajima za komfor gostiju, uključujući LCD SAT TV, sef, klima-uređaj i pristup internetu. Svaka soba ima i prostrana kupatila sa svim dodatnim kuaptilskim sadržajima."
+		 )

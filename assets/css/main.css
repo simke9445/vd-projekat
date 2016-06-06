@@ -2,3 +2,50 @@
 	color: red !important;
 	font-size: 2em;
 }
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 85%;
+      margin: 0 auto;
+  }
+
+ .top-padded{
+ 	padding-top: 2em;
+ }
+
+.vertical-center {
+    margin-top: 0.4em;
+}
+
+.top-padded-sm{
+	padding-top: 1em;
+}
+
+.top-padded-xs{
+	padding-top: 0.5em;
+}
+
+.carousel-slide .carousel-indicators img {
+   border: 2px solid #FFFFFF;
+   float: left;
+   height: 54px;
+   left: 0;
+   width: 100px;
+}
+
+
+.img-indicators {
+	width: 80px !important;
+	height: 50px !important;
+	border-color: white !important;
+	border-width: 2px !important;
+	border-style: solid !important;
+}
+
+.search-margin{
+	margin-top: 1.75em;
+}
+
+.text-align-right{
+	text-align: right;
+}

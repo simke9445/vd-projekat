@@ -1,0 +1,17 @@
+extends layouts/layout_rs
+
+block content
+	+breadcrumbs()
+		+breadcrumb("index_rs.html") Pocetna
+		+breadcrumb("new_year_2016_rs.html") Nova godina 2016
+		+breadcrumb("dubai_rs.html") Dubai
+		+breadcrumb() Apartman A
+
+	+details(
+		3, 
+		["http://placehold.it/500x300", "http://placehold.it/500x300", "http://placehold.it/500x300"],
+		 "http://placehold.it/500x300",
+		 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.",
+		 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis.",
+		 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor nec justo consectetur porta eu eget neque. Donec rhoncus condimentum metus nec bibendum.<br/><br/>Pogodnosti: Donec fringilla et felis ut vulputate. Donec vel ipsum luctus lacus ultrices ornare. Maecenas non dui sed augue lobortis mollis."
+		 )
