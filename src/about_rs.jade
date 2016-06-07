@@ -17,9 +17,16 @@ block content
             form
                 .form-group
                     .row
-                        input.form-control(placeholder="naslov")
+                        input.form-control(id="title" placeholder="naslov")
                     .row.top-padded-xs
-                        textarea.form-control.top-padded-xs( rows="5" )
+                        textarea.form-control.top-padded-xs( id="body" rows="5" )
                 .form-group
                     .row
-                        +button("primary", "#") Posalji
+                        a( class=["btn", "btn-primary"], href=href onclick="send()") Posalji
+
+    script.
+        function send() {
+            var title = $('#title').val();
+            var body = $('#body').val();
+            window.open('mailto:rista@turista.com?subject=' + title + '&body=' + body);
+        }
